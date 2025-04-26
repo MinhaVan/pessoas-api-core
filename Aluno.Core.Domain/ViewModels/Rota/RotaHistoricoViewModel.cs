@@ -1,8 +1,6 @@
 using System;
 using System.Collections.Generic;
 using Aluno.Core.Domain.Enums;
-using Aluno.Core.Domain.Enums;
-using Aluno.Core.Domain.ViewModels;
 
 namespace Aluno.Core.Domain.ViewModels.Rota;
 

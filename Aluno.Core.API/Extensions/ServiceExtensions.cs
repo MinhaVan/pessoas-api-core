@@ -18,7 +18,6 @@ public static class ServiceExtensions
         services.AddHttpContextAccessor();
         services.AddCache(secretManager);
 
-        services.AddScoped<IAmazonService, AmazonService>();
         services.AddScoped<IAlunoService, AlunoService>();
 
         Console.WriteLine("Configuração das services realizada com sucesso!");
@@ -28,11 +27,6 @@ public static class ServiceExtensions
 
     public static IServiceCollection AddCache(this IServiceCollection services, SecretManager secretManager)
     {
-        services.AddSignalR().AddStackExchangeRedis(secretManager.ConnectionStrings.RedisConnection, options =>
-        {
-            options.Configuration.ChannelPrefix = "rotaHub"; // Nome opcional
-        });
-
         services.AddSingleton<IConnectionMultiplexer>(sp =>
         {
             var configuration = secretManager.ConnectionStrings.RedisConnection;

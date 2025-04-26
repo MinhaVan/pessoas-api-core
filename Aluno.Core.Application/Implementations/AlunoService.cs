@@ -17,7 +17,7 @@ public class AlunoService : IAlunoService
 {
     private readonly IMapper _mapper;
     private readonly IBaseRepository<Domain.Models.Aluno> _alunoRepository;
-    private readonly IBaseRepository<AlunoRota> _AlunoRotaRepository;
+    private readonly IBaseRepository<AlunoRota> _alunoRotaRepository;
     private readonly IRouterAPI _routerAPI;
     private readonly IUserContext _userContext;
     public AlunoService(
@@ -30,7 +30,7 @@ public class AlunoService : IAlunoService
         _userContext = userContext;
         _mapper = map;
         _routerAPI = routerAPI;
-        _AlunoRotaRepository = AlunoRotaRepository;
+        _alunoRotaRepository = AlunoRotaRepository;
         _alunoRepository = alunoRepository;
     }
 
@@ -96,7 +96,7 @@ public class AlunoService : IAlunoService
         );
 
         // Buscar IDs dos alunos que já estão cadastrados na rota
-        var alunosNaRota = await _AlunoRotaRepository.BuscarAsync(
+        var alunosNaRota = await _alunoRotaRepository.BuscarAsync(
             x => x.RotaId == rotaId && x.Status == StatusEntityEnum.Ativo
         );
 
@@ -114,64 +114,61 @@ public class AlunoService : IAlunoService
         return _mapper.Map<List<AlunoViewModel>>(Alunos);
     }
 
-    public async Task VincularRotaAsync(int rotaId, int AlunoId)
+    public async Task VincularRotaAsync(int rotaId, int alunoId)
     {
-        if (rotaId < 1 || AlunoId < 1)
+        if (rotaId < 1 || alunoId < 1)
             return;
 
-        var AlunoRotas = await _AlunoRotaRepository.BuscarAsync(x =>
-            x.AlunoId == AlunoId &&
+        var alunoRota = await _alunoRotaRepository.BuscarUmAsync(x =>
+            x.AlunoId == alunoId &&
             x.RotaId == rotaId &&
             x.Status != StatusEntityEnum.Ativo);
 
         var rotaExistente = await _routerAPI.ObterRotaPorIdAsync(rotaId);
-        var AlunoExistente = await _alunoRepository.ObterPorIdAsync(AlunoId);
+        var alunoExistente = await _alunoRepository.ObterPorIdAsync(alunoId);
 
         if (rotaExistente is null)
         {
             throw new InvalidOperationException("A rota especificado não existe.");
         }
 
-        if (AlunoExistente == null)
+        if (alunoExistente == null)
         {
             throw new InvalidOperationException("O aluno especificado não existe.");
         }
 
-        if (AlunoRotas is null || !AlunoRotas.Any())
+        if (alunoRota is null)
         {
             var AlunoRota = new AlunoRota
             {
-                AlunoId = AlunoId,
+                AlunoId = alunoId,
                 RotaId = rotaId
             };
 
-            await _AlunoRotaRepository.AdicionarAsync(AlunoRota);
+            await _alunoRotaRepository.AdicionarAsync(AlunoRota);
         }
         else
         {
-            var AlunoRota = AlunoRotas.First();
-            AlunoRota.Status = StatusEntityEnum.Ativo;
-            await _AlunoRotaRepository.AtualizarAsync(AlunoRota);
+            alunoRota.Status = StatusEntityEnum.Ativo;
+            await _alunoRotaRepository.AtualizarAsync(alunoRota);
         }
     }
 
-    public async Task DesvincularRotaAsync(int rotaId, int AlunoId)
+    public async Task DesvincularRotaAsync(int rotaId, int alunoId)
     {
-        if (rotaId < 1 || AlunoId < 1)
+        if (rotaId < 1 || alunoId < 1)
             return;
 
-        var AlunoRotas = await _AlunoRotaRepository.BuscarAsync(x =>
-            x.AlunoId == AlunoId &&
+        var alunoRota = await _alunoRotaRepository.BuscarUmAsync(x =>
+            x.AlunoId == alunoId &&
             x.RotaId == rotaId);
 
-        if (AlunoRotas is null || !AlunoRotas.Any())
+        if (alunoRota is null)
         {
             throw new Exception("Nenhuma rota encontrada!");
         }
 
-        var AlunoRota = AlunoRotas.First();
-        AlunoRota.Status = StatusEntityEnum.Deletado;
-
-        await _AlunoRotaRepository.AtualizarAsync(AlunoRota);
+        alunoRota.Status = StatusEntityEnum.Deletado;
+        await _alunoRotaRepository.AtualizarAsync(alunoRota);
     }
 }

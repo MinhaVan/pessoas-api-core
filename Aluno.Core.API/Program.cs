@@ -48,7 +48,7 @@ if (app.Environment.IsDevelopment())
 
 // Configurações gerais
 app.UseSwagger();
-app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Core.API v1"));
+app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Aluno.Core.API v1"));
 
 app.UseResponseCompression();
 app.UseRouting();
