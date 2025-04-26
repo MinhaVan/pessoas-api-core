@@ -11,6 +11,7 @@ public class SecretManager
     public TokenConfigurations TokenConfigurations { get; set; }
     public Asaas Asaas { get; set; }
     public Google Google { get; set; }
+    public URL URL { get; set; }
     public string AllowedHosts { get; set; }
 }
 
@@ -75,4 +76,10 @@ public class Google
 {
     public string BaseUrl { get; set; }
     public string Key { get; set; }
+}
+
+public class URL
+{
+    public string RouterAPI { get; set; }
+    public string AuthAPI { get; set; }
 }

@@ -183,4 +183,10 @@ public class AlunoService : IAlunoService
 
         return _mapper.Map<List<AlunoViewModel>>(alunos);
     }
+
+    public async Task<List<AlunoRotaViewModel>> ObterRotasPorAlunoAsync(int alunoId, int rotaId)
+    {
+        var alunosRotas = await _alunoRotaRepository.BuscarAsync(x => x.AlunoId == alunoId && x.RotaId == rotaId);
+        return _mapper.Map<List<AlunoRotaViewModel>>(alunosRotas);
+    }
 }

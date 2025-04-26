@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Aluno.Core.Domain.Models;
-using Aluno.Core.Domain.ViewModels;
 
 namespace Aluno.Core.Domain.Interfaces.Repository;
 
@@ -19,4 +19,6 @@ public interface IBaseRepository<T> where T : Entity
     Task AtualizarAsync(T entity);
     Task AtualizarAsync(IEnumerable<T> entities);
     Task RemoverAsync(T entity);
+    Task RemoverAsync(int id);
+    IQueryable<T> AsQueryable();
 }

@@ -1,7 +1,6 @@
 using Aluno.Core.Data.Context;
 using Aluno.Core.Domain.Interfaces.Repository;
 using Aluno.Core.Domain.Models;
-using Aluno.Core.Domain.ViewModels;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -73,6 +72,11 @@ public class BaseRepository<T> : IBaseRepository<T> where T : Entity
         return response;
     }
 
+    public IQueryable<T> AsQueryable()
+    {
+        return _dbSet.AsQueryable();
+    }
+
     public async Task<T> BuscarUmAsync(Expression<Func<T, bool>> predicate, params Expression<Func<T, object>>[] includes)
     {
         IQueryable<T> query = _dbSet.Where(predicate);
@@ -106,6 +110,13 @@ public class BaseRepository<T> : IBaseRepository<T> where T : Entity
     {
         _dbSet.Remove(entity);
         await _context.SaveChangesAsync();
+    }
+
+    public async Task RemoverAsync(int id)
+    {
+        await _dbSet
+            .Where(e => EF.Property<int>(e, "Id") == id)
+            .ExecuteUpdateAsync(e => e.SetProperty(e => EF.Property<Domain.Enums.StatusEntityEnum>(e, "Status"), Domain.Enums.StatusEntityEnum.Deletado));
     }
 
     public async Task AdicionarAsync(IEnumerable<T> entities)

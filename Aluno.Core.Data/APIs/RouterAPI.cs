@@ -14,17 +14,18 @@ public class RouterAPI : IRouterAPI
 {
     private readonly HttpClient _httpClient;
     private readonly ILogger<RouterAPI> _logger;
-
+    private readonly IUserContext _context;
     public RouterAPI(IHttpClientFactory httpClientFactory, IUserContext context, ILogger<RouterAPI> logger)
     {
+        _context = context;
         _httpClient = httpClientFactory.CreateClient("api-router");
-        _httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {context.Token}");
         _logger = logger;
     }
 
     public async Task<RotaViewModel> ObterRotaPorIdAsync(int rotaId)
     {
         _logger.LogInformation($"Enviando requisição para obter dados da rota - Dados: {rotaId}");
+        _httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {_context.Token}");
         var response = await _httpClient.GetAsync($"/api/v1/Rota/{rotaId}");
 
         if (response.IsSuccessStatusCode)
