@@ -15,8 +15,8 @@
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.8.0" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Aluno.Core.Domain\Aluno.Core.Domain.csproj" />
-    <ProjectReference Include="..\Aluno.Core.Data\Aluno.Core.Data.csproj" />
+    <ProjectReference Include="..\Pessoas.Domain\Pessoas.Domain.csproj" />
+    <ProjectReference Include="..\Pessoas.Data\Pessoas.Data.csproj" />
   </ItemGroup>
   <PropertyGroup>
     <TargetFramework>net9.0</TargetFramework>

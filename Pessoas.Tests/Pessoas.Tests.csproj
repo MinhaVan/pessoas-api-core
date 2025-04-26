@@ -26,10 +26,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Aluno.Core.API\Aluno.Core.API.csproj" />
-    <ProjectReference Include="..\Aluno.Core.Application\Aluno.Core.Application.csproj" />
-    <ProjectReference Include="..\Aluno.Core.Domain\Aluno.Core.Domain.csproj" />
-    <ProjectReference Include="..\Aluno.Core.Data\Aluno.Core.Data.csproj" />
+    <ProjectReference Include="..\Pessoas.API\Pessoas.API.csproj" />
+    <ProjectReference Include="..\Pessoas.Application\Pessoas.Application.csproj" />
+    <ProjectReference Include="..\Pessoas.Domain\Pessoas.Domain.csproj" />
+    <ProjectReference Include="..\Pessoas.Data\Pessoas.Data.csproj" />
   </ItemGroup>
 
 </Project>
