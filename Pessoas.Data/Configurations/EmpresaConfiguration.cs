@@ -10,9 +10,5 @@ public class EmpresaConfiguration : IEntityTypeConfiguration<Empresa>
     {
         modelBuilder.ConfigureBaseEntity();
         modelBuilder.ToTable("empresas");
-        modelBuilder.HasMany(x => x.Usuarios)
-            .WithOne(y => y.Empresa)
-            .HasForeignKey(x => x.EmpresaId);
-
     }
 }

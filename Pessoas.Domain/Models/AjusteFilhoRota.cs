@@ -10,8 +10,4 @@ public class AjusteAlunoRota : Entity
     public int? NovoEnderecoDestinoId { get; set; }
     public int? NovoEnderecoRetornoId { get; set; }
     public DateTime Data { get; set; }
-    //
-    public virtual Endereco EnderecoPartida { get; set; }
-    public virtual Endereco EnderecoDestino { get; set; }
-    public virtual Endereco EnderecoRetorno { get; set; }
 }

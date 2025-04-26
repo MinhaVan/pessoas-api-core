@@ -15,9 +15,9 @@ public class AlunoViewModel
     public int EnderecoPartidaId { get; set; }
     public int EnderecoDestinoId { get; set; }
     public int? EnderecoRetornoId { get; set; }
-    //
-    public UsuarioViewModel Responsavel { get; set; }
     public EnderecoViewModel EnderecoPartida { get; set; }
     public EnderecoViewModel EnderecoDestino { get; set; }
-    public EnderecoViewModel? EnderecoRetorno { get; set; }
+    public EnderecoViewModel EnderecoRetorno { get; set; }
+    //
+    public UsuarioViewModel Responsavel { get; set; }
 }

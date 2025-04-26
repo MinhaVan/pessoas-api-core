@@ -9,10 +9,7 @@ public class AlunoRotaConfiguration : IEntityTypeConfiguration<AlunoRota>
     public void Configure(EntityTypeBuilder<AlunoRota> modelBuilder)
     {
         modelBuilder.HasKey(x => new { x.AlunoId, x.RotaId });
-        modelBuilder.ToTable("Aluno_rota");
-        // modelBuilder.HasOne(x => x.Rota)
-        //     .WithMany(y => y.AlunoRotas)
-        //     .HasForeignKey(x => x.RotaId);
+        modelBuilder.ToTable("alunoRota");
 
         modelBuilder.HasOne(x => x.Aluno)
             .WithMany(y => y.AlunoRotas)

@@ -29,7 +29,6 @@ public static class RepositoryExtensions
         services.AddScoped<IBaseRepository<AlunoRota>, BaseRepository<AlunoRota>>();
         services.AddScoped<IBaseRepository<AlunoRotaHistorico>, BaseRepository<AlunoRotaHistorico>>();
         services.AddScoped<IBaseRepository<Empresa>, BaseRepository<Empresa>>();
-        services.AddScoped<IBaseRepository<Endereco>, BaseRepository<Endereco>>();
         services.AddScoped<IBaseRepository<RotaHistorico>, BaseRepository<RotaHistorico>>();
         services.AddScoped<IBaseRepository<Domain.Models.Aluno>, BaseRepository<Domain.Models.Aluno>>();
         services.AddScoped<IRedisRepository, RedisRepository>();

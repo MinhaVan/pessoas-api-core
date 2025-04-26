@@ -17,12 +17,7 @@ public class Aluno : Entity
     //
     public virtual List<AlunoRota> AlunoRotas { get; set; }
     public virtual List<AlunoRotaHistorico> AlunoRotaHistoricos { get; set; }
-    // public virtual List<OrdemTrajeto> OrdemTrajetos { get; set; }
-    public virtual Usuario Responsavel { get; set; }
     public virtual Empresa Empresa { get; set; }
-    public virtual Endereco EnderecoPartida { get; set; }
-    public virtual Endereco EnderecoDestino { get; set; }
-    public virtual Endereco? EnderecoRetorno { get; set; }
 
     public string NomeInteiro() => this.PrimeiroNome.Trim() + " " + this.UltimoNome.Trim();
 }

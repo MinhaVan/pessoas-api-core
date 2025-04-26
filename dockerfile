@@ -9,7 +9,7 @@ FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 
-COPY ["Pessoas.API.sln", "."]
+COPY ["Pessoas.sln", "."]
 COPY ["Pessoas.API/Pessoas.API.csproj", "Pessoas.API/"]
 COPY ["Pessoas.Domain/Pessoas.Domain.csproj", "Pessoas.Domain/"]
 COPY ["Pessoas.Application/Pessoas.Application.csproj", "Pessoas.Application/"]

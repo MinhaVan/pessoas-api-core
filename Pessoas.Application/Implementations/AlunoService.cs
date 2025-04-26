@@ -10,6 +10,7 @@ using Aluno.Core.Domain.ViewModels;
 using Aluno.Core.Domain.Interfaces.Services;
 using Microsoft.EntityFrameworkCore;
 using Aluno.Core.Domain.Interfaces.APIs;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Aluno.Core.Service.Implementations;
 
@@ -91,9 +92,11 @@ public class AlunoService : IAlunoService
                 EF.Functions.ILike(x.Email, $"%{filtro}%") ||
                 EF.Functions.ILike(x.CPF, $"%{filtro}%")) &&
                 x.Status == StatusEntityEnum.Ativo &&
-                x.EmpresaId == _userContext.Empresa,
-            x => x.EnderecoPartida, x => x.EnderecoDestino, x => x.EnderecoRetorno, x => x.AlunoRotas
+                x.EmpresaId == _userContext.Empresa
+            // x => x.EnderecoPartida, x => x.EnderecoDestino, x => x.EnderecoRetorno, x => x.AlunoRotas
         );
+
+        var enderecos = await ObterEnderecosAsync(alunos);
 
         // Buscar IDs dos alunos que já estão cadastrados na rota
         var alunosNaRota = await _alunoRotaRepository.BuscarAsync(
@@ -105,7 +108,29 @@ public class AlunoService : IAlunoService
         // Filtrar alunos que NÃO estão na rota
         var alunosForaDaRota = alunos.Where(x => !alunosNaRotaIds.Contains(x.Id)).ToList();
 
-        return _mapper.Map<List<AlunoViewModel>>(alunosForaDaRota);
+        var response = _mapper.Map<List<AlunoViewModel>>(alunosForaDaRota);
+        await Parallel.ForEachAsync(response, async (aluno, _) =>
+        {
+            aluno.EnderecoPartida = enderecos.FirstOrDefault(x => x.Id == aluno.EnderecoPartidaId);
+            aluno.EnderecoDestino = enderecos.FirstOrDefault(x => x.Id == aluno.EnderecoDestinoId);
+            aluno.EnderecoRetorno = enderecos.FirstOrDefault(x => x.Id == aluno.EnderecoRetornoId);
+        });
+
+        return response;
+    }
+
+    private async Task<List<EnderecoViewModel>> ObterEnderecosAsync(IEnumerable<Domain.Models.Aluno> alunos)
+    {
+        var enderecosParaBuscar = alunos
+            .Select(x => x.EnderecoPartidaId)
+            .Concat(alunos.Select(x => x.EnderecoDestinoId))
+            .Concat(alunos.Select(x => x.EnderecoRetornoId ?? 0))
+            .Where(x => x > 0)
+            .Distinct()
+            .ToList();
+
+        var enderecos = await _routerAPI.ObterEnderecoPorIdAsync(enderecosParaBuscar);
+        return enderecos.ToList();
     }
 
     public async Task<IList<AlunoViewModel>> ObterAluno(int responsavelId, int AlunoId)
@@ -174,14 +199,18 @@ public class AlunoService : IAlunoService
 
     public async Task<IList<AlunoViewModel>> ObterAlunosAsync(List<int> alunosIds)
     {
-        var alunos = await _alunoRepository.BuscarAsync(x =>
-            alunosIds.Contains(x.Id),
-            z => z.EnderecoPartida,
-            z => z.EnderecoDestino,
-            z => z.EnderecoRetorno
-        );
+        var alunos = await _alunoRepository.BuscarAsync(x => alunosIds.Contains(x.Id));
+        var enderecos = await ObterEnderecosAsync(alunos);
 
-        return _mapper.Map<List<AlunoViewModel>>(alunos);
+        var response = _mapper.Map<List<AlunoViewModel>>(alunos);
+        await Parallel.ForEachAsync(response, async (aluno, _) =>
+        {
+            aluno.EnderecoPartida = enderecos.FirstOrDefault(x => x.Id == aluno.EnderecoPartidaId);
+            aluno.EnderecoDestino = enderecos.FirstOrDefault(x => x.Id == aluno.EnderecoDestinoId);
+            aluno.EnderecoRetorno = enderecos.FirstOrDefault(x => x.Id == aluno.EnderecoRetornoId);
+        });
+
+        return response;
     }
 
     public async Task<List<AlunoRotaViewModel>> ObterRotasPorAlunoAsync(int alunoId, int rotaId)

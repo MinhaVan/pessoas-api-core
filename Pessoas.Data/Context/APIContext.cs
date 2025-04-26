@@ -32,21 +32,6 @@ public class APIContext : DbContext
         modelBuilder.ApplyConfiguration(new AlunoConfiguration());
         modelBuilder.ApplyConfiguration(new AlunoRotaHistoricoConfiguration());
         modelBuilder.ApplyConfiguration(new AjusteAlunoRotaConfiguration());
-        // modelBuilder.ApplyConfiguration(new MotoristaRotaConfiguration());
-        // modelBuilder.ApplyConfiguration(new MotoristaConfiguration());
-        // modelBuilder.ApplyConfiguration(new UsuarioConfiguration());
-        // modelBuilder.ApplyConfiguration(new PlanoConfiguration());
-        // modelBuilder.ApplyConfiguration(new PagamentoConfiguration());
-        // modelBuilder.ApplyConfiguration(new VeiculoConfiguration());
-        // modelBuilder.ApplyConfiguration(new OrdemTrajetoConfiguration());
-        // modelBuilder.ApplyConfiguration(new OrdemTrajetoMarcadorConfiguration());
-        // modelBuilder.ApplyConfiguration(new RotaConfiguration());
-        // modelBuilder.ApplyConfiguration(new RotaHistoricoConfiguration());
-        // modelBuilder.ApplyConfiguration(new EnderecoConfiguration());
-        // modelBuilder.ApplyConfiguration(new AssinaturaConfiguration());
-        // modelBuilder.ApplyConfiguration(new PermissaoConfiguration());
-        // modelBuilder.ApplyConfiguration(new UsuarioPermissaoConfiguration());
-        // modelBuilder.ApplyConfiguration(new LocalizacaoTrajetoConfiguration());
 
         base.OnModelCreating(modelBuilder);
     }
@@ -69,10 +54,8 @@ public class APIContext : DbContext
     }
 
     public DbSet<AjusteAlunoRota> AjusteAlunoRotas { get; set; }
-    public DbSet<Usuario> Usuarios { get; set; }
     public DbSet<Domain.Models.Aluno> Alunos { get; set; }
     public DbSet<RotaHistorico> RotaHistoricos { get; set; }
-    public DbSet<Endereco> Enderecos { get; set; }
     public DbSet<AlunoRota> AlunoRotas { get; set; }
     public DbSet<AlunoRotaHistorico> AlunoRotaHistoricos { get; set; }
     // public DbSet<Rota> Rotas { get; set; }

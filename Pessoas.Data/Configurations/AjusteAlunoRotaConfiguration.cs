@@ -10,17 +10,5 @@ public class AjusteAlunoRotaConfiguration : IEntityTypeConfiguration<AjusteAluno
     {
         modelBuilder.ConfigureBaseEntity();
         modelBuilder.ToTable("ajusteAlunoRota");
-
-        modelBuilder.HasOne(x => x.EnderecoPartida)
-            .WithMany(y => y.AjusteAlunoRotasPartida)
-            .HasForeignKey(x => x.NovoEnderecoPartidaId);
-
-        modelBuilder.HasOne(x => x.EnderecoDestino)
-            .WithMany(y => y.AjusteAlunoRotasDestino)
-            .HasForeignKey(x => x.NovoEnderecoDestinoId);
-
-        modelBuilder.HasOne(x => x.EnderecoRetorno)
-            .WithMany(y => y.AjusteAlunoRotasRetorno)
-            .HasForeignKey(x => x.NovoEnderecoRetornoId);
     }
 }

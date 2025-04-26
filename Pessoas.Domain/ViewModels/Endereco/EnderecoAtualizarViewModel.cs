@@ -2,7 +2,7 @@ using Aluno.Core.Domain.Enums;
 
 namespace Aluno.Core.Domain.ViewModels;
 
-public class EnderecoViewModel
+public class EnderecoAtualizarViewModel
 {
     public int Id { get; set; }
     public string Complemento { get; set; }
@@ -13,5 +13,10 @@ public class EnderecoViewModel
     public string Cidade { get; set; }
     public string Estado { get; set; }
     public string Pais { get; set; }
-    public TipoEnderecoEnum TipoEndereco { get; set; }
+    private TipoEnderecoEnum? tipoEndereco;
+    public TipoEnderecoEnum? TipoEndereco
+    {
+        get => tipoEndereco ?? TipoEnderecoEnum.Outros;
+        set => tipoEndereco = value;
+    }
 }
