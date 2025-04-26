@@ -14,4 +14,5 @@ public interface IAlunoService
     Task VincularRotaAsync(int rotaId, int AlunoId);
     Task DesvincularRotaAsync(int rotaId, int AlunoId);
     Task<List<AlunoViewModel>> ObterAlunosPorFiltro(int rotaId, string filtro);
+    Task<IList<AlunoViewModel>> ObterAlunosAsync(List<int> alunosIds);
 }

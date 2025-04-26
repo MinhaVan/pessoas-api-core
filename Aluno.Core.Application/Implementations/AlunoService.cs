@@ -171,4 +171,16 @@ public class AlunoService : IAlunoService
         alunoRota.Status = StatusEntityEnum.Deletado;
         await _alunoRotaRepository.AtualizarAsync(alunoRota);
     }
+
+    public async Task<IList<AlunoViewModel>> ObterAlunosAsync(List<int> alunosIds)
+    {
+        var alunos = await _alunoRepository.BuscarAsync(x =>
+            alunosIds.Contains(x.Id),
+            z => z.EnderecoPartida,
+            z => z.EnderecoDestino,
+            z => z.EnderecoRetorno
+        );
+
+        return _mapper.Map<List<AlunoViewModel>>(alunos);
+    }
 }

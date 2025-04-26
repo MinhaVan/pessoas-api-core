@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Aluno.Core.Domain.ViewModels;
 using Aluno.Core.Domain.Interfaces.Services;
 using Aluno.Core.Domain.Interfaces.Repository;
+using System.Collections.Generic;
 
 namespace Aluno.Core.API.Controllers.v1;
 
@@ -25,6 +26,13 @@ public class AlunoController : BaseController
     {
         var responsavelId = _userContext.UserId;
         return Success(await _alunoService.ObterTodos(responsavelId));
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> ObterAlunosAsync([FromQuery] List<int> alunosIds)
+    {
+        var alunos = await _alunoService.ObterAlunosAsync(alunosIds);
+        return Success(alunos);
     }
 
     [HttpGet("buscar")]
