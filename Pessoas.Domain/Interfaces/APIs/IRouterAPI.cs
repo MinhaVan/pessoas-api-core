@@ -9,6 +9,10 @@ public interface IRouterAPI
 {
     Task<RotaViewModel> ObterRotaPorIdAsync(int rotaId);
     //
+    Task<BaseResponse<List<AlunoRotaViewModel>>> ObterRotasPorAlunoAsync(int rotaId, int? alunoId = null);
+    Task<BaseResponse<object>> AtualizarAlunoRotaAsync(AlunoRotaViewModel alunoRotaAtualizarViewModel);
+    Task<BaseResponse<object>> AdicionarAlunoRotaAsync(AlunoRotaViewModel alunoRotaAdicionarViewModel);
+    //
     Task AdicionarEnderecoAsync(EnderecoAdicionarViewModel enderecoAdicionarViewModel);
     Task AtualizarEnderecoAsync(int id, EnderecoAtualizarViewModel enderecoAtualizarViewModel);
     Task DeletarEnderecoAsync(int id);

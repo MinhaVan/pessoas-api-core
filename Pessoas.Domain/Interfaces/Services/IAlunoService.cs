@@ -11,9 +11,6 @@ public interface IAlunoService
     Task DeletarAsync(int responsavelId, int AlunoId);
     Task<IList<AlunoViewModel>> ObterTodos(int responsavelId);
     Task<IList<AlunoViewModel>> ObterAluno(int responsavelId, int AlunoId);
-    Task VincularRotaAsync(int rotaId, int AlunoId);
-    Task DesvincularRotaAsync(int rotaId, int AlunoId);
     Task<List<AlunoViewModel>> ObterAlunosPorFiltro(int rotaId, string filtro);
     Task<IList<AlunoViewModel>> ObterAlunosAsync(List<int> alunosIds);
-    Task<List<AlunoRotaViewModel>> ObterRotasPorAlunoAsync(int alunoId, int rotaId);
 }

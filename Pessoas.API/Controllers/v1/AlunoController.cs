@@ -64,30 +64,4 @@ public class AlunoController : BaseController
         await _alunoService.DeletarAsync(responsavelId, alunoId);
         return Success();
     }
-
-
-    #region Aluno Rota
-
-    [HttpGet("{alunoId}/rota/{rotaId}")]
-    public async Task<IActionResult> ObterRotasPorAluno(int alunoId, int rotaId)
-    {
-        var rotas = await _alunoService.ObterRotasPorAlunoAsync(alunoId, rotaId);
-        return Success(rotas);
-    }
-
-
-    [HttpPost("{alunoId}/rota/{rotaId}/vincular")]
-    public async Task<IActionResult> VincularRota(int alunoId, int rotaId)
-    {
-        await _alunoService.VincularRotaAsync(rotaId, alunoId);
-        return Success();
-    }
-
-    [HttpPut("{alunoId}/rota/{rotaId}/desvincular")]
-    public async Task<IActionResult> DesvincularRota(int alunoId, int rotaId)
-    {
-        await _alunoService.DesvincularRotaAsync(rotaId, alunoId);
-        return Success();
-    }
-    #endregion Aluno Rota
 }

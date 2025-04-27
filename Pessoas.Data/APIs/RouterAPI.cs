@@ -44,6 +44,75 @@ public class RouterAPI : IRouterAPI
         }
     }
 
+    #region Aluno Rota
+    public async Task<BaseResponse<List<AlunoRotaViewModel>>> ObterRotasPorAlunoAsync(int rotaId, int? alunoId = null)
+    {
+        _logger.LogInformation($"Enviando requisição para obter rotas por aluno - Dados: {alunoId}");
+
+        _httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {_context.Token}");
+
+        var response = await _httpClient.GetAsync($"/api/v1/AlunoRota?rotaId={rotaId}&alunoId={alunoId}");
+
+        if (response.IsSuccessStatusCode)
+        {
+            var alunoRota = await response.Content.ReadFromJsonAsync<BaseResponse<List<AlunoRotaViewModel>>>();
+            _logger.LogInformation($"Resposta da requisição para obter rotas por aluno - Dados: {alunoRota.ToJson()}");
+            return alunoRota;
+        }
+        else
+        {
+            var mensagemErro = await response.Content.ReadAsStringAsync();
+            _logger.LogError($"Erro ao obter rotas por aluno - Mensagem: {mensagemErro}");
+            throw new Exception("Ocorreu um erro ao tentar obter rotas por aluno!");
+        }
+    }
+
+    public async Task<BaseResponse<object>> AdicionarAlunoRotaAsync(AlunoRotaViewModel alunoRotaAdicionarViewModel)
+    {
+        _logger.LogInformation($"Enviando requisição para adicionar aluno a rota - Dados: {alunoRotaAdicionarViewModel.ToJson()}");
+
+        _httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {_context.Token}");
+
+        var response = await _httpClient.PostAsJsonAsync("/api/v1/AlunoRota", alunoRotaAdicionarViewModel);
+
+        if (response.IsSuccessStatusCode)
+        {
+            var alunoRota = await response.Content.ReadFromJsonAsync<BaseResponse<object>>();
+            _logger.LogInformation($"Aluno adicionado a rota com sucesso!");
+            return alunoRota;
+        }
+        else
+        {
+            var mensagemErro = await response.Content.ReadAsStringAsync();
+            _logger.LogError($"Erro ao adicionar aluno a rota - Mensagem: {mensagemErro}");
+            throw new Exception("Ocorreu um erro ao tentar adicionar o aluno a rota!");
+        }
+    }
+
+    public async Task<BaseResponse<object>> AtualizarAlunoRotaAsync(AlunoRotaViewModel alunoRotaAtualizarViewModel)
+    {
+        _logger.LogInformation($"Enviando requisição para atualizar aluno a rota - Dados: {alunoRotaAtualizarViewModel.ToJson()}");
+
+        _httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {_context.Token}");
+
+        var response = await _httpClient.PutAsJsonAsync($"/api/v1/AlunoRota", alunoRotaAtualizarViewModel);
+
+        if (response.IsSuccessStatusCode)
+        {
+            var alunoRota = await response.Content.ReadFromJsonAsync<BaseResponse<object>>();
+            _logger.LogInformation($"Aluno atualizado na rota com sucesso!");
+            return alunoRota;
+        }
+        else
+        {
+            var mensagemErro = await response.Content.ReadAsStringAsync();
+            _logger.LogError($"Erro ao atualizar aluno a rota - Mensagem: {mensagemErro}");
+            throw new Exception("Ocorreu um erro ao tentar atualizar o aluno a rota!");
+        }
+    }
+
+    #endregion Aluno Rota
+
     #region Endereco
     public async Task AdicionarEnderecoAsync(EnderecoAdicionarViewModel enderecoAdicionarViewModel)
     {

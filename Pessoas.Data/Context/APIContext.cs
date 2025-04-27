@@ -27,7 +27,6 @@ public class APIContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.ApplyConfiguration(new AlunoRotaConfiguration());
         modelBuilder.ApplyConfiguration(new AlunoConfiguration());
         modelBuilder.ApplyConfiguration(new AjusteAlunoRotaConfiguration());
 
@@ -53,5 +52,4 @@ public class APIContext : DbContext
 
     public DbSet<AjusteAlunoRota> AjusteAlunoRotas { get; set; }
     public DbSet<Domain.Models.Aluno> Alunos { get; set; }
-    public DbSet<AlunoRota> AlunoRotas { get; set; }
 }

@@ -26,7 +26,6 @@ public static class RepositoryExtensions
 
         // Repositories
         services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
-        services.AddScoped<IBaseRepository<AlunoRota>, BaseRepository<AlunoRota>>();
         services.AddScoped<IBaseRepository<AjusteAlunoRota>, BaseRepository<AjusteAlunoRota>>();
         services.AddScoped<IBaseRepository<RotaHistorico>, BaseRepository<RotaHistorico>>();
         services.AddScoped<IBaseRepository<Domain.Models.Aluno>, BaseRepository<Domain.Models.Aluno>>();

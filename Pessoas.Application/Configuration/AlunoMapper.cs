@@ -11,7 +11,6 @@ public class AlunoMapper : Profile
     {
         CreateMap<AlunoViewModel, Domain.Models.Aluno>().ReverseMap();
         CreateMap<AlunoAdicionarViewModel, Domain.Models.Aluno>().ReverseMap();
-        CreateMap<AlunoRotaViewModel, AlunoRota>().ReverseMap();
         CreateMap<AlunoDetalheViewModel, Domain.Models.Aluno>().ReverseMap();
     }
 }

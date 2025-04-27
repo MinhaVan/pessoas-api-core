@@ -14,8 +14,6 @@ public class Aluno : Entity
     public int EnderecoPartidaId { get; set; }
     public int EnderecoDestinoId { get; set; }
     public int? EnderecoRetornoId { get; set; }
-    //
-    public virtual List<AlunoRota> AlunoRotas { get; set; }
 
     public string NomeInteiro() => this.PrimeiroNome.Trim() + " " + this.UltimoNome.Trim();
 }
