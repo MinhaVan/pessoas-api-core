@@ -75,8 +75,17 @@ public class AlunoService : IAlunoService
 
     public async Task<IList<AlunoViewModel>> ObterTodos(int responsavelId)
     {
-        var Alunos = await _alunoRepository.BuscarAsync(x => x.ResponsavelId == responsavelId && x.Status == StatusEntityEnum.Ativo);
-        return _mapper.Map<List<AlunoViewModel>>(Alunos);
+        var alunos = await _alunoRepository.BuscarAsync(x => x.ResponsavelId == responsavelId && x.Status == StatusEntityEnum.Ativo);
+        var enderecos = await ObterEnderecosAsync(alunos);
+        var response = _mapper.Map<List<AlunoViewModel>>(alunos);
+        await Parallel.ForEachAsync(response, async (aluno, _) =>
+        {
+            aluno.EnderecoPartida = enderecos.FirstOrDefault(x => x.Id == aluno.EnderecoPartidaId);
+            aluno.EnderecoDestino = enderecos.FirstOrDefault(x => x.Id == aluno.EnderecoDestinoId);
+            aluno.EnderecoRetorno = enderecos.FirstOrDefault(x => x.Id == aluno.EnderecoRetornoId);
+        });
+
+        return response;
     }
 
     public async Task<List<AlunoViewModel>> ObterAlunosPorFiltro(int rotaId, string filtro)
@@ -128,6 +137,9 @@ public class AlunoService : IAlunoService
             .Where(x => x > 0)
             .Distinct()
             .ToList();
+
+        if (!enderecosParaBuscar.Any())
+            return new List<EnderecoViewModel>();
 
         var enderecos = await _routerAPI.ObterEnderecoPorIdAsync(enderecosParaBuscar);
         return enderecos.ToList();
