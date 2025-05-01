@@ -8,7 +8,7 @@ on:
 
 jobs:
   deploy-dev:
-    if: github.ref == 'refs/heads/develop'
+    if: github.ref == 'refs/heads/develop' || github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -42,18 +42,18 @@ jobs:
             cd ./APIs
             docker compose stop pessoas-api-dev || true
             docker compose rm -f pessoas-api-dev || true
-            docker rmi pessoas-api-dev:latest || true
+            docker rmi apis-pessoas-api-dev:latest || true
 
             docker compose build
 
             if docker compose up -d; then
               echo "Deploy DEV com sucesso! Salvando imagem de backup..."
-              docker tag pessoas-api-dev:latest pessoas-api-dev-backup:latest
+              docker tag apis-pessoas-api-dev:latest apis-pessoas-api-dev-backup:latest
             else
               echo "Erro no deploy DEV. Rollback iniciado..."
               docker compose down || true
-              docker pull pessoas-api-dev-backup:latest
-              docker run -d --name pessoas-api-dev:latest pessoas-api-dev-backup:latest
+              docker pull apis-pessoas-api-dev-backup:latest
+              docker run -d --name apis-pessoas-api-dev:latest apis-pessoas-api-dev-backup:latest
               echo "Rollback DEV concluído."
               exit 1
             fi
@@ -97,18 +97,18 @@ jobs:
             cd ./APIs
             docker compose stop pessoas-api || true
             docker compose rm -f pessoas-api || true
-            docker rmi pessoas-api:latest || true
+            docker rmi apis-pessoas-api:latest || true
 
             docker compose build
 
             if docker compose up -d; then
               echo "Deploy PROD com sucesso! Salvando imagem de backup..."
-              docker tag pessoas-api:latest pessoas-api-backup:latest
+              docker tag apis-pessoas-api:latest apis-pessoas-api-backup:latest
             else
               echo "Erro no deploy PROD. Rollback iniciado..."
               docker compose down || true
-              docker pull pessoas-api-backup:latest
-              docker run -d --name pessoas-api:latest pessoas-api-backup:latest
+              docker pull apis-pessoas-api-backup:latest
+              docker run -d --name apis-pessoas-api:latest apis-pessoas-api-backup:latest
               echo "Rollback PROD concluído."
               exit 1
             fi
