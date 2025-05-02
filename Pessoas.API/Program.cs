@@ -46,7 +46,7 @@ if (app.Environment.IsDevelopment())
     app.UseDeveloperExceptionPage();
 }
 
-// Configurações gerais
+// Configurações geraiss
 #if !DEBUG
 app.UsePathBase("/pessoas");
 app.UseSwagger();
