@@ -55,7 +55,6 @@ jobs:
             else
               echo "Erro no deploy DEV. Rollback iniciado..."
               docker compose down || true
-              docker pull apis-pessoas-api-dev-backup:latest
               docker tag apis-pessoas-api-dev-backup:latest apis-pessoas-api-dev:latest
               docker run -d --name apis-pessoas-api-dev:latest apis-pessoas-api-dev-backup:latest
               echo "Rollback DEV concluído."
