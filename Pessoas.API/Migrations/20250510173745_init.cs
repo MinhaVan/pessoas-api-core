@@ -59,25 +59,23 @@ namespace Pessoas.API.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "alunoRota",
+                name: "motorista",
                 columns: table => new
                 {
-                    AlunoId = table.Column<int>(type: "integer", nullable: false),
-                    RotaId = table.Column<int>(type: "integer", nullable: false),
-                    Id = table.Column<int>(type: "integer", nullable: false),
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    UsuarioId = table.Column<int>(type: "integer", nullable: false),
+                    CNH = table.Column<string>(type: "text", nullable: true),
+                    Vencimento = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    TipoCNH = table.Column<int>(type: "integer", nullable: false),
+                    Foto = table.Column<string>(type: "text", nullable: true),
                     DataCriacao = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     DataAlteracao = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     Status = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_alunoRota", x => new { x.AlunoId, x.RotaId });
-                    table.ForeignKey(
-                        name: "FK_alunoRota_alunos_AlunoId",
-                        column: x => x.AlunoId,
-                        principalTable: "alunos",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                    table.PrimaryKey("PK_motorista", x => x.Id);
                 });
         }
 
@@ -88,10 +86,10 @@ namespace Pessoas.API.Migrations
                 name: "ajusteAlunoRota");
 
             migrationBuilder.DropTable(
-                name: "alunoRota");
+                name: "alunos");
 
             migrationBuilder.DropTable(
-                name: "alunos");
+                name: "motorista");
         }
     }
 }
