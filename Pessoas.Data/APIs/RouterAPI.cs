@@ -27,8 +27,8 @@ public class RouterAPI : IRouterAPI
     public async Task<RotaViewModel> ObterRotaPorIdAsync(int rotaId)
     {
         _logger.LogInformation($"Enviando requisição para obter dados da rota - Dados: {rotaId}");
-        _httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {_context.Token}");
-        var response = await _httpClient.GetAsync($"/api/v1/Rota/{rotaId}");
+        _httpClient.DefaultRequestHeaders.Add("Authorization", _context.Token);
+        var response = await _httpClient.GetAsync($"v1/Rota/{rotaId}");
 
         if (response.IsSuccessStatusCode)
         {
@@ -49,9 +49,9 @@ public class RouterAPI : IRouterAPI
     {
         _logger.LogInformation($"Enviando requisição para obter rotas por aluno - Dados: {alunoId}");
 
-        _httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {_context.Token}");
+        _httpClient.DefaultRequestHeaders.Add("Authorization", _context.Token);
 
-        var response = await _httpClient.GetAsync($"/api/v1/AlunoRota?rotaId={rotaId}&alunoId={alunoId}");
+        var response = await _httpClient.GetAsync($"v1/AlunoRota?rotaId={rotaId}&alunoId={alunoId}");
 
         if (response.IsSuccessStatusCode)
         {
@@ -71,9 +71,9 @@ public class RouterAPI : IRouterAPI
     {
         _logger.LogInformation($"Enviando requisição para adicionar aluno a rota - Dados: {alunoRotaAdicionarViewModel.ToJson()}");
 
-        _httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {_context.Token}");
+        _httpClient.DefaultRequestHeaders.Add("Authorization", _context.Token);
 
-        var response = await _httpClient.PostAsJsonAsync("/api/v1/AlunoRota", alunoRotaAdicionarViewModel);
+        var response = await _httpClient.PostAsJsonAsync("v1/AlunoRota", alunoRotaAdicionarViewModel);
 
         if (response.IsSuccessStatusCode)
         {
@@ -93,9 +93,9 @@ public class RouterAPI : IRouterAPI
     {
         _logger.LogInformation($"Enviando requisição para atualizar aluno a rota - Dados: {alunoRotaAtualizarViewModel.ToJson()}");
 
-        _httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {_context.Token}");
+        _httpClient.DefaultRequestHeaders.Add("Authorization", _context.Token);
 
-        var response = await _httpClient.PutAsJsonAsync($"/api/v1/AlunoRota", alunoRotaAtualizarViewModel);
+        var response = await _httpClient.PutAsJsonAsync($"v1/AlunoRota", alunoRotaAtualizarViewModel);
 
         if (response.IsSuccessStatusCode)
         {
@@ -118,9 +118,9 @@ public class RouterAPI : IRouterAPI
     {
         _logger.LogInformation($"Enviando requisição para adicionar um novo endereço - Dados: {enderecoAdicionarViewModel.ToJson()}");
 
-        _httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {_context.Token}");
+        _httpClient.DefaultRequestHeaders.Add("Authorization", _context.Token);
 
-        var response = await _httpClient.PostAsJsonAsync("/api/v1/endereco", enderecoAdicionarViewModel);
+        var response = await _httpClient.PostAsJsonAsync("v1/endereco", enderecoAdicionarViewModel);
 
         if (response.IsSuccessStatusCode)
         {
@@ -138,9 +138,9 @@ public class RouterAPI : IRouterAPI
     {
         _logger.LogInformation($"Enviando requisição para atualizar endereço - ID: {id}, Dados: {enderecoAtualizarViewModel.ToJson()}");
 
-        _httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {_context.Token}");
+        _httpClient.DefaultRequestHeaders.Add("Authorization", _context.Token);
 
-        var response = await _httpClient.PutAsJsonAsync($"/api/v1/endereco/{id}", enderecoAtualizarViewModel);
+        var response = await _httpClient.PutAsJsonAsync($"v1/endereco/{id}", enderecoAtualizarViewModel);
 
         if (response.IsSuccessStatusCode)
         {
@@ -158,9 +158,9 @@ public class RouterAPI : IRouterAPI
     {
         _logger.LogInformation($"Enviando requisição para deletar endereço - ID: {id}");
 
-        _httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {_context.Token}");
+        _httpClient.DefaultRequestHeaders.Add("Authorization", _context.Token);
 
-        var response = await _httpClient.DeleteAsync($"/api/v1/endereco/{id}");
+        var response = await _httpClient.DeleteAsync($"v1/endereco/{id}");
 
         if (response.IsSuccessStatusCode)
         {
@@ -178,9 +178,9 @@ public class RouterAPI : IRouterAPI
     {
         _logger.LogInformation($"Enviando requisição para obter dados do endereço - ID: {id}");
 
-        _httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {_context.Token}");
+        _httpClient.DefaultRequestHeaders.Add("Authorization", _context.Token);
 
-        var response = await _httpClient.GetAsync($"/api/v1/endereco/{id}");
+        var response = await _httpClient.GetAsync($"v1/endereco/{id}");
 
         if (response.IsSuccessStatusCode)
         {
@@ -200,15 +200,16 @@ public class RouterAPI : IRouterAPI
     {
         _logger.LogInformation($"Enviando requisição para obter dados do endereço - ID: {ids.ToJson()}");
 
-        _httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {_context.Token}");
+        _httpClient.DefaultRequestHeaders.Add("Authorization", _context.Token);
 
-        var response = await _httpClient.GetAsync($"/api/v1/endereco/{ids}");
+        var queryString = string.Join("&ids=", ids);
+        var response = await _httpClient.GetAsync($"v1/endereco/Lista?ids={queryString}");
 
         if (response.IsSuccessStatusCode)
         {
-            var enderecos = await response.Content.ReadFromJsonAsync<List<EnderecoViewModel>>();
-            _logger.LogInformation($"Resposta da requisição para obter dados do endereço - Dados: {enderecos.ToJson()}");
-            return enderecos;
+            var enderecoResponse = await response.Content.ReadFromJsonAsync<BaseResponse<List<EnderecoViewModel>>>();
+            _logger.LogInformation($"Resposta da requisição para obter dados do endereço - Dados: {enderecoResponse.ToJson()}");
+            return enderecoResponse.Data;
         }
         else
         {
@@ -222,9 +223,9 @@ public class RouterAPI : IRouterAPI
     {
         _logger.LogInformation($"Enviando requisição para obter todos os endereços");
 
-        _httpClient.DefaultRequestHeaders.Add("Authorization", $"Bearer {_context.Token}");
+        _httpClient.DefaultRequestHeaders.Add("Authorization", _context.Token);
 
-        var response = await _httpClient.GetAsync("/api/v1/endereco");
+        var response = await _httpClient.GetAsync("v1/endereco");
 
         if (response.IsSuccessStatusCode)
         {
