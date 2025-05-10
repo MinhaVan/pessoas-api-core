@@ -19,6 +19,7 @@ public static class ServiceExtensions
         services.AddCache(secretManager);
 
         services.AddScoped<IAlunoService, AlunoService>();
+        services.AddScoped<IMotoristaService, MotoristaService>();
 
         Console.WriteLine("Configuração das services realizada com sucesso!");
 
