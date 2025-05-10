@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 
 namespace Pessoas.Core.API.Filters;
 
@@ -71,6 +72,8 @@ public class GlobalExceptionFilter : IExceptionFilter
                 StatusCode = StatusCodes.Status500InternalServerError
             };
         }
+
+        Console.WriteLine(JsonConvert.SerializeObject(context.Exception));
 
         context.ExceptionHandled = true;
     }
