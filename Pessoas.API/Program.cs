@@ -51,7 +51,6 @@ internal class Program
         if (environment == "local")
         {
             app.UseDeveloperExceptionPage();
-            app.UsePathBase("/pessoas");
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
