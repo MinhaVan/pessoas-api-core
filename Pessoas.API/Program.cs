@@ -8,6 +8,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.DependencyInjection;
 using Aluno.Core.Data.Context;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 
 internal class Program
 {
@@ -15,7 +16,7 @@ internal class Program
     {
         var builder = WebApplication.CreateBuilder(args);
         var environment = builder.Environment.EnvironmentName;
-        Console.WriteLine($"Iniciando a API no ambiente '{environment}'");
+        Console.WriteLine($"Iniciando a API no ambiente '{environment}'.");
 
         builder.Configuration
             .SetBasePath(Directory.GetCurrentDirectory())
@@ -25,6 +26,7 @@ internal class Program
 
         // Adiciona as configurações do Secrets Manager
         var secretManager = builder.Services.AddSecretManager(builder.Configuration);
+        Console.WriteLine($"Secret: '{JsonConvert.SerializeObject(secretManager)}'");
 
         // Configura os serviços
         builder.Services.AddCustomAuthentication(secretManager)
