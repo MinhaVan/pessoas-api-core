@@ -1,4 +1,4 @@
-namespace Aluno.Core.Domain.Interfaces.Repository;
+namespace Pessoas.Core.Domain.Interfaces.Repository;
 
 public interface IUserContext
 {

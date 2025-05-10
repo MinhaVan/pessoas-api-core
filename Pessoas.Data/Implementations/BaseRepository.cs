@@ -1,6 +1,6 @@
-using Aluno.Core.Data.Context;
-using Aluno.Core.Domain.Interfaces.Repository;
-using Aluno.Core.Domain.Models;
+using Pessoas.Core.Data.Context;
+using Pessoas.Core.Domain.Interfaces.Repository;
+using Pessoas.Core.Domain.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -8,7 +8,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
-namespace Aluno.Core.Data.Repositories;
+namespace Pessoas.Core.Data.Repositories;
 
 public class BaseRepository<T> : IBaseRepository<T> where T : Entity
 {

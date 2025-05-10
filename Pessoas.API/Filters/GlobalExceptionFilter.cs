@@ -1,13 +1,13 @@
 using System;
 using System.Collections.Generic;
-using Aluno.Core.Domain.ViewModels;
-using Aluno.Core.Service.Exceptions;
+using Pessoas.Core.Domain.ViewModels;
+using Pessoas.Core.Service.Exceptions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Logging;
 
-namespace Aluno.Core.API.Filters;
+namespace Pessoas.Core.API.Filters;
 
 public class GlobalExceptionFilter : IExceptionFilter
 {

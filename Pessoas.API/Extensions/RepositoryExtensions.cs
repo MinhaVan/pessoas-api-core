@@ -1,17 +1,17 @@
 using System;
 using System.Linq;
-using Aluno.Core.Data.APIs;
-using Aluno.Core.Data.Implementations;
-using Aluno.Core.Data.Repositories;
-using Aluno.Core.Domain.Interfaces.APIs;
-using Aluno.Core.Domain.Interfaces.Repositories;
-using Aluno.Core.Domain.Interfaces.Repository;
-using Aluno.Core.Domain.Models;
-using Aluno.Core.Service.Configuration;
+using Pessoas.Core.Data.APIs;
+using Pessoas.Core.Data.Implementations;
+using Pessoas.Core.Data.Repositories;
+using Pessoas.Core.Domain.Interfaces.APIs;
+using Pessoas.Core.Domain.Interfaces.Repositories;
+using Pessoas.Core.Domain.Interfaces.Repository;
+using Pessoas.Core.Domain.Models;
+using Pessoas.Core.Service.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using RabbitMQ.Client;
 
-namespace Aluno.Core.API.Extensions;
+namespace Pessoas.Core.API.Extensions;
 
 public static class RepositoryExtensions
 {

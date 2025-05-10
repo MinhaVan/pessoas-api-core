@@ -1,10 +1,10 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using Aluno.Core.Data.Context;
+using Pessoas.Core.Data.Context;
 using System;
-using Aluno.Core.Service.Configuration;
+using Pessoas.Core.Service.Configuration;
 
-namespace Aluno.Core.API.Extensions;
+namespace Pessoas.Core.API.Extensions;
 
 public static class DbContextExtensions
 {

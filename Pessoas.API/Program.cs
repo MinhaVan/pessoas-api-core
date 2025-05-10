@@ -1,12 +1,12 @@
 using System;
 using System.IO;
 using AspNetCoreRateLimit;
-using Aluno.Core.API.Extensions;
+using Pessoas.Core.API.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.DependencyInjection;
-using Aluno.Core.Data.Context;
+using Pessoas.Core.Data.Context;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 

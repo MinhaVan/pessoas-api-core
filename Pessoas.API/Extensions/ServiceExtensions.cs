@@ -1,15 +1,15 @@
 using System;
-using Aluno.Core.Service.Implementations;
-using Aluno.Core.Domain.Interfaces.Services;
+using Pessoas.Core.Service.Implementations;
+using Pessoas.Core.Domain.Interfaces.Services;
 using Microsoft.Extensions.DependencyInjection;
-using Aluno.Core.API.Filters;
+using Pessoas.Core.API.Filters;
 using FluentValidation.AspNetCore;
 using FluentValidation;
 using System.Reflection;
 using StackExchange.Redis;
-using Aluno.Core.Service.Configuration;
+using Pessoas.Core.Service.Configuration;
 
-namespace Aluno.Core.API.Extensions;
+namespace Pessoas.Core.API.Extensions;
 
 public static class ServiceExtensions
 {

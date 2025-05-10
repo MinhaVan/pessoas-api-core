@@ -1,17 +1,17 @@
 using System;
 using System.Threading.Tasks;
 using AutoMapper;
-using Aluno.Core.Domain.Interfaces.Repository;
-using Aluno.Core.Domain.Models;
-using Aluno.Core.Domain.ViewModels;
-using Aluno.Core.Domain.Interfaces.Services;
+using Pessoas.Core.Domain.Interfaces.Repository;
+using Pessoas.Core.Domain.Models;
+using Pessoas.Core.Domain.ViewModels;
+using Pessoas.Core.Domain.Interfaces.Services;
 using System.Security.Cryptography;
 using System.Linq;
-using Aluno.Core.Domain.Enums;
-using Aluno.Core.Service.Exceptions;
+using Pessoas.Core.Domain.Enums;
+using Pessoas.Core.Service.Exceptions;
 using System.Collections.Generic;
 
-namespace Aluno.Core.Service.Implementations;
+namespace Pessoas.Core.Service.Implementations;
 
 public class UsuarioService : IUsuarioService
 {

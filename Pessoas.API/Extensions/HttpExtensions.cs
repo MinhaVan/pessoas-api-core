@@ -1,10 +1,10 @@
 using System;
-using Aluno.Core.Domain.Interfaces.APIs;
-using Aluno.Core.Service.Configuration;
+using Pessoas.Core.Domain.Interfaces.APIs;
+using Pessoas.Core.Service.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Refit;
 
-namespace Aluno.Core.API.Extensions;
+namespace Pessoas.Core.API.Extensions;
 
 public static class HttpExtensions
 {

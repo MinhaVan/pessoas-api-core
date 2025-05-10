@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
-using Aluno.Core.Domain.ViewModels;
+using Pessoas.Core.Domain.ViewModels;
 using System.Collections.Generic;
 
-namespace Aluno.Core.API.Controllers;
+namespace Pessoas.Core.API.Controllers;
 
 public abstract class BaseController : ControllerBase
 {

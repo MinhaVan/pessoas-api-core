@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
-using Aluno.Core.Domain.Interfaces.Repository;
-using Aluno.Core.Domain.Enums;
-using Aluno.Core.Domain.Models;
-using Aluno.Core.Domain.ViewModels;
-using Aluno.Core.Domain.Interfaces.Services;
+using Pessoas.Core.Domain.Interfaces.Repository;
+using Pessoas.Core.Domain.Enums;
+using Pessoas.Core.Domain.Models;
+using Pessoas.Core.Domain.ViewModels;
+using Pessoas.Core.Domain.Interfaces.Services;
 using Microsoft.EntityFrameworkCore;
 
-namespace Aluno.Core.Service.Implementations;
+namespace Pessoas.Core.Service.Implementations;
 
 public class AlunoService : IAlunoService
 {

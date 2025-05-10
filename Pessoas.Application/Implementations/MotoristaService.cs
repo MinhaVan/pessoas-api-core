@@ -1,15 +1,15 @@
 using System.Threading.Tasks;
 using AutoMapper;
-using Aluno.Core.Domain.Enums;
-using Aluno.Core.Domain.Interfaces.Repository;
-using Aluno.Core.Domain.Interfaces.Services;
-using Aluno.Core.Domain.ViewModels;
-using Aluno.Core.Domain.Models;
-using Aluno.Core.Domain.ViewModels.Motorista;
-using Aluno.Core.Domain.Interfaces.APIs;
-using Aluno.Core.Service.Exceptions;
+using Pessoas.Core.Domain.Enums;
+using Pessoas.Core.Domain.Interfaces.Repository;
+using Pessoas.Core.Domain.Interfaces.Services;
+using Pessoas.Core.Domain.ViewModels;
+using Pessoas.Core.Domain.Models;
+using Pessoas.Core.Domain.ViewModels.Motorista;
+using Pessoas.Core.Domain.Interfaces.APIs;
+using Pessoas.Core.Service.Exceptions;
 
-namespace Aluno.Core.Service.Implementations;
+namespace Pessoas.Core.Service.Implementations;
 
 public class MotoristaService : IMotoristaService
 {

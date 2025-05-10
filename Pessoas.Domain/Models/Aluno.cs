@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Aluno.Core.Domain.Models;
+namespace Pessoas.Core.Domain.Models;
 
 public class Aluno : Entity
 {

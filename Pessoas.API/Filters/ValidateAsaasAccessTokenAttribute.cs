@@ -1,9 +1,9 @@
-using Aluno.Core.Service.Configuration;
+using Pessoas.Core.Service.Configuration;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Aluno.Core.API.Filters;
+namespace Pessoas.Core.API.Filters;
 
 public class ValidateAsaasAccessTokenAttribute : ActionFilterAttribute
 {

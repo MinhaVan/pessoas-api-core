@@ -1,6 +1,6 @@
-using Aluno.Core.Domain.Models;
+using Pessoas.Core.Domain.Models;
 
-namespace Aluno.Core.Domain.ViewModels;
+namespace Pessoas.Core.Domain.ViewModels;
 
 public class AlunoViewModel
 {

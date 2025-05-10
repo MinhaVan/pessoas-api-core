@@ -1,7 +1,7 @@
 using System.Threading.Tasks;
-using Aluno.Core.Domain.ViewModels;
+using Pessoas.Core.Domain.ViewModels;
 
-namespace Aluno.Core.Domain.Interfaces.Services;
+namespace Pessoas.Core.Domain.Interfaces.Services;
 
 public interface IMotoristaService
 {

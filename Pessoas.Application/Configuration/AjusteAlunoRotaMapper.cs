@@ -1,8 +1,8 @@
 using AutoMapper;
-using Aluno.Core.Domain.Models;
-using Aluno.Core.Domain.ViewModels.Rota;
+using Pessoas.Core.Domain.Models;
+using Pessoas.Core.Domain.ViewModels.Rota;
 
-namespace Aluno.Core.Service.Configurations;
+namespace Pessoas.Core.Service.Configurations;
 
 public class AjusteAlunoRotaMapper : Profile
 {

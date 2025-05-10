@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
-using Aluno.Core.Domain.Models;
+using Pessoas.Core.Domain.Models;
 
-namespace Aluno.Core.Domain.Interfaces.Repository;
+namespace Pessoas.Core.Domain.Interfaces.Repository;
 
 public interface IBaseRepository<T> where T : Entity
 {

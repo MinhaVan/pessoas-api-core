@@ -1,4 +1,4 @@
-namespace Aluno.Core.Domain.Enums;
+namespace Pessoas.Core.Domain.Enums;
 
 public enum PerfilEnum
 {

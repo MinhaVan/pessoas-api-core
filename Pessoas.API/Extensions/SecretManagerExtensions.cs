@@ -1,9 +1,9 @@
 using System;
-using Aluno.Core.Service.Configuration;
+using Pessoas.Core.Service.Configuration;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Aluno.Core.API.Extensions;
+namespace Pessoas.Core.API.Extensions;
 
 public static class SecretManagerExtensions
 {

@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
-using Aluno.Core.Domain.Interfaces.APIs;
-using Aluno.Core.Domain.Interfaces.Repository;
-using Aluno.Core.Domain.Utils;
-using Aluno.Core.Domain.ViewModels;
-using Aluno.Core.Domain.ViewModels.Rota;
+using Pessoas.Core.Domain.Interfaces.APIs;
+using Pessoas.Core.Domain.Interfaces.Repository;
+using Pessoas.Core.Domain.Utils;
+using Pessoas.Core.Domain.ViewModels;
+using Pessoas.Core.Domain.ViewModels.Rota;
 using Microsoft.Extensions.Logging;
 
-namespace Aluno.Core.Data.APIs;
+namespace Pessoas.Core.Data.APIs;
 
 public class RouterAPI : IRouterAPI
 {

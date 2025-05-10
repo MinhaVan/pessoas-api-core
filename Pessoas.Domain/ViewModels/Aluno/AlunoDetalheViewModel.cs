@@ -2,9 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Aluno.Core.Domain.Models;
+using Pessoas.Core.Domain.Models;
 
-namespace Aluno.Core.Domain.ViewModels.Aluno;
+namespace Pessoas.Core.Domain.ViewModels.Aluno;
 
 public class AlunoDetalheViewModel
 {

@@ -1,10 +1,10 @@
 using System;
 using System.Threading.Tasks;
-using Aluno.Core.Domain.Interfaces.Repositories;
+using Pessoas.Core.Domain.Interfaces.Repositories;
 using Newtonsoft.Json;
 using StackExchange.Redis;
 
-namespace Aluno.Core.Data.Implementations;
+namespace Pessoas.Core.Data.Implementations;
 
 public class RedisRepository : IRedisRepository
 {

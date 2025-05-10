@@ -1,7 +1,7 @@
-using Aluno.Core.Domain.Models;
+using Pessoas.Core.Domain.Models;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Aluno.Core.Data.Configurations;
+namespace Pessoas.Core.Data.Configurations;
 
 public static class ModelBuilderExtensions
 {

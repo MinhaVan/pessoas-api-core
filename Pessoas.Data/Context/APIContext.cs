@@ -1,12 +1,12 @@
 using Microsoft.EntityFrameworkCore;
-using Aluno.Core.Domain.Models;
+using Pessoas.Core.Domain.Models;
 using System.Linq;
 using System;
 using System.Threading.Tasks;
 using System.Threading;
-using Aluno.Core.Data.Configurations;
+using Pessoas.Core.Data.Configurations;
 
-namespace Aluno.Core.Data.Context;
+namespace Pessoas.Core.Data.Context;
 
 public class APIContext : DbContext
 {
@@ -29,6 +29,7 @@ public class APIContext : DbContext
     {
         modelBuilder.ApplyConfiguration(new AlunoConfiguration());
         modelBuilder.ApplyConfiguration(new AjusteAlunoRotaConfiguration());
+        modelBuilder.ApplyConfiguration(new MotoristaConfiguration());
 
         base.OnModelCreating(modelBuilder);
     }

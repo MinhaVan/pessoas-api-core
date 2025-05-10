@@ -1,6 +1,6 @@
 using System.Threading.Tasks;
 
-namespace Aluno.Core.Domain.Interfaces.Repositories;
+namespace Pessoas.Core.Domain.Interfaces.Repositories;
 
 public interface IRedisRepository
 {

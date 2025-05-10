@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Aluno.Core.Domain.ViewModels;
-using Aluno.Core.Domain.ViewModels.Rota;
+using Pessoas.Core.Domain.ViewModels;
+using Pessoas.Core.Domain.ViewModels.Rota;
 
-namespace Aluno.Core.Domain.Interfaces.APIs;
+namespace Pessoas.Core.Domain.Interfaces.APIs;
 
 public interface IRouterAPI
 {

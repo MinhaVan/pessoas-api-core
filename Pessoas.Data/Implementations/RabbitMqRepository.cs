@@ -1,9 +1,9 @@
 using RabbitMQ.Client;
 using System.Text;
 using System.Threading.Tasks;
-using Aluno.Core.Domain.Interfaces.Repositories;
+using Pessoas.Core.Domain.Interfaces.Repositories;
 
-namespace Aluno.Core.Data.Implementations;
+namespace Pessoas.Core.Data.Implementations;
 
 public class RabbitMqRepository : IRabbitMqRepository
 {

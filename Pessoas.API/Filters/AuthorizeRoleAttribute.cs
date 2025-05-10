@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using System.Linq;
 using System.Security.Claims;
-using Aluno.Core.Domain.Enums;
+using Pessoas.Core.Domain.Enums;
 
 public class AuthorizeRolesAttribute : ActionFilterAttribute
 {

@@ -3,18 +3,18 @@
 // using System.Linq;
 // using System.Threading.Tasks;
 // using AutoMapper;
-// using Aluno.Core.Domain.Enums;
-// using Aluno.Core.Domain.Interfaces.Repository;
-// using Aluno.Core.Domain.Models;
-// using Aluno.Core.Domain.ViewModels;
+// using Pessoas.Core.Domain.Enums;
+// using Pessoas.Core.Domain.Interfaces.Repository;
+// using Pessoas.Core.Domain.Models;
+// using Pessoas.Core.Domain.ViewModels;
 // using Moq;
 // using Xunit;
-// using Aluno.Core.Service.Implementations;
+// using Pessoas.Core.Service.Implementations;
 // using System.Linq.Expressions;
-// using Aluno.Core.Domain.Interfaces.APIs;
-// using Aluno.Core.Domain.ViewModels.Rota;
+// using Pessoas.Core.Domain.Interfaces.APIs;
+// using Pessoas.Core.Domain.ViewModels.Rota;
 
-// namespace Aluno.Core.Tests.Unitary;
+// namespace Pessoas.Core.Tests.Unitary;
 
 // public class AlunoServiceTest
 // {

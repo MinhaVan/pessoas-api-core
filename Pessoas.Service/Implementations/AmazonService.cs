@@ -1,11 +1,11 @@
 using Amazon;
 using Amazon.SimpleEmail;
 using Amazon.SimpleEmail.Model;
-using Aluno.Core.Domain.Interfaces.Services;
+using Pessoas.Core.Domain.Interfaces.Services;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Aluno.Core.Service.Implementations;
+namespace Pessoas.Core.Service.Implementations;
 
 public class AmazonService : IAmazonService
 {

@@ -1,9 +1,9 @@
 using System.Threading.Tasks;
-using Aluno.Core.Domain.ViewModels;
-using Aluno.Core.Domain.ViewModels.Motorista;
+using Pessoas.Core.Domain.ViewModels;
+using Pessoas.Core.Domain.ViewModels.Motorista;
 using Refit;
 
-namespace Aluno.Core.Domain.Interfaces.APIs;
+namespace Pessoas.Core.Domain.Interfaces.APIs;
 
 public interface IAuthApi
 {

@@ -1,9 +1,9 @@
 using System;
 using System.Linq;
-using Aluno.Core.Domain.Interfaces.Repository;
+using Pessoas.Core.Domain.Interfaces.Repository;
 using Microsoft.AspNetCore.Http;
 
-namespace Aluno.Core.Data.Implementations;
+namespace Pessoas.Core.Data.Implementations;
 
 public class UserContext : IUserContext
 {

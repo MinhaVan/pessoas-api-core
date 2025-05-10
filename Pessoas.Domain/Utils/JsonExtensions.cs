@@ -1,6 +1,6 @@
 using Newtonsoft.Json;
 
-namespace Aluno.Core.Domain.Utils;
+namespace Pessoas.Core.Domain.Utils;
 
 public static class JsonExtensions
 {

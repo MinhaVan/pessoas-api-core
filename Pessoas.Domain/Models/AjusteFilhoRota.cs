@@ -1,6 +1,6 @@
 using System;
 
-namespace Aluno.Core.Domain.Models;
+namespace Pessoas.Core.Domain.Models;
 
 public class AjusteAlunoRota : Entity
 {

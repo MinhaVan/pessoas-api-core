@@ -1,6 +1,6 @@
 using System;
 
-namespace Aluno.Core.Service.Exceptions;
+namespace Pessoas.Core.Service.Exceptions;
 
 public class BusinessRuleException : Exception
 {

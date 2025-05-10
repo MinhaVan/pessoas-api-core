@@ -1,8 +1,8 @@
 using System;
-using Aluno.Core.Domain.Enums;
-using Aluno.Core.Domain.ViewModels.Motorista;
+using Pessoas.Core.Domain.Enums;
+using Pessoas.Core.Domain.ViewModels.Motorista;
 
-namespace Aluno.Core.Domain.ViewModels;
+namespace Pessoas.Core.Domain.ViewModels;
 
 public class MotoristaNovoViewModel : UsuarioNovoViewModel
 {

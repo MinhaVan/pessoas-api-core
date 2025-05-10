@@ -1,12 +1,12 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Aluno.Core.Domain.ViewModels;
-using Aluno.Core.Domain.Interfaces.Services;
-using Aluno.Core.Domain.Interfaces.Repository;
+using Pessoas.Core.Domain.ViewModels;
+using Pessoas.Core.Domain.Interfaces.Services;
+using Pessoas.Core.Domain.Interfaces.Repository;
 using System.Collections.Generic;
 
-namespace Aluno.Core.API.Controllers.v1;
+namespace Pessoas.Core.API.Controllers.v1;
 
 [ApiController]
 [Route("v1/[controller]")]

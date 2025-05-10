@@ -1,6 +1,6 @@
 using System;
 
-namespace Aluno.Core.Domain.ViewModels;
+namespace Pessoas.Core.Domain.ViewModels;
 
 public class AlunoAdicionarViewModel
 {

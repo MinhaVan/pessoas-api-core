@@ -1,4 +1,4 @@
-namespace Aluno.Core.Domain.ViewModels.Motorista;
+namespace Pessoas.Core.Domain.ViewModels.Motorista;
 
 public class MotoristaRotaViewModel
 {

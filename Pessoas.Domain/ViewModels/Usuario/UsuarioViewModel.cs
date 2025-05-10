@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
-using Aluno.Core.Domain.Enums;
+using Pessoas.Core.Domain.Enums;
 
-namespace Aluno.Core.Domain.ViewModels;
+namespace Pessoas.Core.Domain.ViewModels;
 
 public class UsuarioViewModel
 {

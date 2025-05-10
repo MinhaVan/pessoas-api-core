@@ -1,9 +1,9 @@
 using AutoMapper;
-using Aluno.Core.Domain.ViewModels;
-using Aluno.Core.Domain.Models;
-using Aluno.Core.Domain.ViewModels.Aluno;
+using Pessoas.Core.Domain.ViewModels;
+using Pessoas.Core.Domain.Models;
+using Pessoas.Core.Domain.ViewModels.Aluno;
 
-namespace Aluno.Core.Service.Configurations;
+namespace Pessoas.Core.Service.Configurations;
 
 public class AlunoMapper : Profile
 {

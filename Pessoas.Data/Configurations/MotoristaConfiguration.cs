@@ -4,11 +4,11 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Pessoas.Core.Data.Configurations;
 
-public class AlunoConfiguration : IEntityTypeConfiguration<Domain.Models.Aluno>
+public class MotoristaConfiguration : IEntityTypeConfiguration<Motorista>
 {
-    public void Configure(EntityTypeBuilder<Domain.Models.Aluno> modelBuilder)
+    public void Configure(EntityTypeBuilder<Motorista> modelBuilder)
     {
         modelBuilder.ConfigureBaseEntity();
-        modelBuilder.ToTable("alunos");
+        modelBuilder.ToTable("motorista");
     }
 }
