@@ -7,7 +7,7 @@ using Pessoas.Core.Domain.Interfaces.APIs;
 using Pessoas.Core.Domain.Interfaces.Repositories;
 using Pessoas.Core.Domain.Interfaces.Repository;
 using Pessoas.Core.Domain.Models;
-using Pessoas.Core.Service.Configuration;
+using Pessoas.Core.Application.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using RabbitMQ.Client;
 
@@ -28,7 +28,7 @@ public static class RepositoryExtensions
         services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
         services.AddScoped<IBaseRepository<AjusteAlunoRota>, BaseRepository<AjusteAlunoRota>>();
         services.AddScoped<IBaseRepository<RotaHistorico>, BaseRepository<RotaHistorico>>();
-        services.AddScoped<IBaseRepository<Domain.Models.Aluno>, BaseRepository<Domain.Models.Aluno>>();
+        services.AddScoped<IBaseRepository<Aluno>, BaseRepository<Aluno>>();
         services.AddScoped<IRedisRepository, RedisRepository>();
 
         services.AddQueue(secretManager);

@@ -1,6 +1,6 @@
 using System;
 using Pessoas.Core.Domain.Interfaces.APIs;
-using Pessoas.Core.Service.Configuration;
+using Pessoas.Core.Application.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Refit;
 

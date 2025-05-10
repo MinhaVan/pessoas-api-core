@@ -1,4 +1,4 @@
-using Pessoas.Core.Service.Configuration;
+using Pessoas.Core.Application.Configuration;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.DependencyInjection;

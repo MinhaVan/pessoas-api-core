@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Pessoas.Core.Service.Configuration;
+namespace Pessoas.Core.Application.Configuration;
 
 public class SecretManager
 {

@@ -10,7 +10,7 @@ using Pessoas.Core.Domain.Interfaces.Services;
 using Microsoft.EntityFrameworkCore;
 using Pessoas.Core.Domain.Interfaces.APIs;
 
-namespace Pessoas.Core.Service.Implementations;
+namespace Pessoas.Core.Application.Implementations;
 
 public class AlunoService : IAlunoService
 {

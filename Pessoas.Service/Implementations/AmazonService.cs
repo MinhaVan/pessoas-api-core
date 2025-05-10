@@ -5,7 +5,7 @@ using Pessoas.Core.Domain.Interfaces.Services;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Pessoas.Core.Service.Implementations;
+namespace Pessoas.Core.Application.Implementations;
 
 public class AmazonService : IAmazonService
 {

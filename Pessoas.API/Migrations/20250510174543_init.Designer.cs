@@ -12,7 +12,7 @@ using Pessoas.Core.Data.Context;
 namespace Pessoas.API.Migrations
 {
     [DbContext(typeof(APIContext))]
-    [Migration("20250510173745_init")]
+    [Migration("20250510174543_init")]
     partial class init
     {
         /// <inheritdoc />

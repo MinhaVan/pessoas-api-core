@@ -1,5 +1,5 @@
 using System;
-using Pessoas.Core.Service.Implementations;
+using Pessoas.Core.Application.Implementations;
 using Pessoas.Core.Domain.Interfaces.Services;
 using Microsoft.Extensions.DependencyInjection;
 using Pessoas.Core.API.Filters;
@@ -7,7 +7,7 @@ using FluentValidation.AspNetCore;
 using FluentValidation;
 using System.Reflection;
 using StackExchange.Redis;
-using Pessoas.Core.Service.Configuration;
+using Pessoas.Core.Application.Configuration;
 
 namespace Pessoas.Core.API.Extensions;
 

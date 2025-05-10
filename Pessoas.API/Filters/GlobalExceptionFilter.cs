@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Pessoas.Core.Domain.ViewModels;
-using Pessoas.Core.Service.Exceptions;
+using Pessoas.Core.Application.Exceptions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;

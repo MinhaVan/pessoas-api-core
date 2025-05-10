@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using AspNetCoreRateLimit;
-using Pessoas.Core.Service.Configuration;
+using Pessoas.Core.Application.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Pessoas.Core.API.Extensions;

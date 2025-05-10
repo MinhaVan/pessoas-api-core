@@ -2,7 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Pessoas.Core.Data.Context;
 using System;
-using Pessoas.Core.Service.Configuration;
+using Pessoas.Core.Application.Configuration;
 
 namespace Pessoas.Core.API.Extensions;
 

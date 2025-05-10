@@ -2,7 +2,7 @@ using AutoMapper;
 using Pessoas.Core.Domain.ViewModels;
 using Pessoas.Core.Domain.Models;
 
-namespace Pessoas.Core.Service.Configurations;
+namespace Pessoas.Core.Application.Configurations;
 
 public class AlunoMapper : Profile
 {

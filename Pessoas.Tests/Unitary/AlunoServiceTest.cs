@@ -9,7 +9,7 @@
 // using Pessoas.Core.Domain.ViewModels;
 // using Moq;
 // using Xunit;
-// using Pessoas.Core.Service.Implementations;
+// using Pessoas.Core.Application.Implementations;
 // using System.Linq.Expressions;
 // using Pessoas.Core.Domain.Interfaces.APIs;
 // using Pessoas.Core.Domain.ViewModels.Rota;

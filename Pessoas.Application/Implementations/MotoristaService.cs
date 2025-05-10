@@ -7,9 +7,9 @@ using Pessoas.Core.Domain.ViewModels;
 using Pessoas.Core.Domain.Models;
 using Pessoas.Core.Domain.ViewModels.Motorista;
 using Pessoas.Core.Domain.Interfaces.APIs;
-using Pessoas.Core.Service.Exceptions;
+using Pessoas.Core.Application.Exceptions;
 
-namespace Pessoas.Core.Service.Implementations;
+namespace Pessoas.Core.Application.Implementations;
 
 public class MotoristaService : IMotoristaService
 {

@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
-using Pessoas.Core.Service.Configuration;
+using Pessoas.Core.Application.Configuration;
 
 namespace Pessoas.Core.API.Extensions;
 

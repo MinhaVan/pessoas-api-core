@@ -8,10 +8,10 @@ using Pessoas.Core.Domain.Interfaces.Services;
 using System.Security.Cryptography;
 using System.Linq;
 using Pessoas.Core.Domain.Enums;
-using Pessoas.Core.Service.Exceptions;
+using Pessoas.Core.Application.Exceptions;
 using System.Collections.Generic;
 
-namespace Pessoas.Core.Service.Implementations;
+namespace Pessoas.Core.Application.Implementations;
 
 public class UsuarioService : IUsuarioService
 {
