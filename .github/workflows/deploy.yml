@@ -55,21 +55,21 @@ jobs:
             git fetch origin && git checkout develop && git pull
 
             cd ./APIs
-            docker compose stop apis-pessoas-api-dev || true
-            docker compose rm -f apis-pessoas-api-dev || true
+            docker compose stop pessoas-api-dev || true
+            docker compose rm -f pessoas-api-dev || true
             docker rmi apis-pessoas-api-dev:latest || true
 
-            docker compose build apis-pessoas-api-dev
+            docker compose build pessoas-api-dev
 
-            if docker compose up -d apis-pessoas-api-dev; then
+            if docker compose up -d pessoas-api-dev; then
               echo "Deploy DEV com sucesso! Salvando imagem de backup..."
               docker tag apis-pessoas-api-dev:latest apis-pessoas-api-dev-backup:latest
             else
               echo "Erro no deploy DEV. Rollback iniciado..."
-              docker compose stop apis-pessoas-api-dev || true
-              docker compose rm -f apis-pessoas-api-dev || true
+              docker compose stop pessoas-api-dev || true
+              docker compose rm -f pessoas-api-dev || true
               docker tag apis-pessoas-api-dev-backup:latest apis-pessoas-api-dev:latest
-              docker run -d --name apis-pessoas-api-dev apis-pessoas-api-dev:latest
+              docker run -d --name pessoas-api-dev apis-pessoas-api-dev:latest
               echo "Rollback DEV concluído."
               exit 1
             fi
