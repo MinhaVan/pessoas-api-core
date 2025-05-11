@@ -6,7 +6,6 @@ using Pessoas.Core.API.Filters;
 using FluentValidation.AspNetCore;
 using FluentValidation;
 using System.Reflection;
-using StackExchange.Redis;
 using Pessoas.Core.Application.Configuration;
 
 namespace Pessoas.Core.API.Extensions;
@@ -28,12 +27,6 @@ public static class ServiceExtensions
 
     public static IServiceCollection AddCache(this IServiceCollection services, SecretManager secretManager)
     {
-        services.AddSingleton<IConnectionMultiplexer>(sp =>
-        {
-            var configuration = secretManager.ConnectionStrings.RedisConnection;
-            return ConnectionMultiplexer.Connect(configuration);
-        });
-
         Console.WriteLine("Configuração do Redis realizada com sucesso!");
 
         return services;
