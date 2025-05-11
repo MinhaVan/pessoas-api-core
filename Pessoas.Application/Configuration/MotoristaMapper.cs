@@ -1,8 +1,9 @@
 using AutoMapper;
-using Pessoas.Core.Domain.ViewModels;
 using Pessoas.Core.Domain.Models;
+using Pessoas.Core.Domain.ViewModels;
+using Pessoas.Core.Domain.ViewModels.Motorista;
 
-namespace Pessoas.Core.Application.Configurations;
+namespace Pessoas.Application.Configuration;
 
 public class MotoristaMapper : Profile
 {
