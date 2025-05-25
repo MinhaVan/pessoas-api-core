@@ -28,13 +28,7 @@ public class MotoristaService : IMotoristaService
 
     public async Task AdicionarAsync(MotoristaNovoViewModel usuarioNovoViewModel)
     {
-        usuarioNovoViewModel.Perfil = PerfilEnum.Motorista;
-        var response = await _authApi.RegistrarAsync(_mapper.Map<UsuarioNovoViewModel>(usuarioNovoViewModel));
-        if (!response.Sucesso)
-            throw new BusinessRuleException(response.Mensagem);
-
         var model = _mapper.Map<Motorista>(usuarioNovoViewModel);
-        model.UsuarioId = response.Data.Id;
         await _motoristaRepository.AdicionarAsync(model);
     }
 
