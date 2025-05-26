@@ -51,6 +51,8 @@ public class APIContext : DbContext
         }
     }
 
+    [DbFunction("unaccent", IsBuiltIn = true)]
+    public static string Unaccent(string input) => throw new NotSupportedException();
     public DbSet<AjusteAlunoRota> AjusteAlunoRotas { get; set; }
     public DbSet<Aluno> Alunos { get; set; }
 }

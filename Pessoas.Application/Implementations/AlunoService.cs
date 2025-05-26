@@ -9,6 +9,7 @@ using Pessoas.Core.Domain.ViewModels;
 using Pessoas.Core.Domain.Interfaces.Services;
 using Microsoft.EntityFrameworkCore;
 using Pessoas.Core.Domain.Interfaces.APIs;
+using Pessoas.Core.Data.Context;
 
 namespace Pessoas.Core.Application.Implementations;
 
@@ -89,16 +90,18 @@ public class AlunoService : IAlunoService
 
         // Buscar todos os alunos que correspondem ao filtro
         var alunos = await _alunoRepository.BuscarAsync(
-            x => (EF.Functions.ILike(x.PrimeiroNome, $"%{filtro}%") ||
-                EF.Functions.ILike(x.UltimoNome, $"%{filtro}%") ||
-                EF.Functions.ILike(x.PrimeiroNome + " " + x.UltimoNome, $"%{filtro}%") ||
-                EF.Functions.ILike(x.Contato, $"%{filtro}%") ||
-                EF.Functions.ILike(x.Email, $"%{filtro}%") ||
-                EF.Functions.ILike(x.CPF, $"%{filtro}%")) &&
+            x => EF.Functions.ILike(APIContext.Unaccent(x.PrimeiroNome), $"%{filtro}%") ||
+                EF.Functions.ILike(APIContext.Unaccent(x.UltimoNome), $"%{filtro}%") ||
+                EF.Functions.ILike(APIContext.Unaccent(x.PrimeiroNome + " " + x.UltimoNome), $"%{filtro}%") ||
+                EF.Functions.ILike(APIContext.Unaccent(x.Contato), $"%{filtro}%") ||
+                EF.Functions.ILike(APIContext.Unaccent(x.Email), $"%{filtro}%") ||
+                EF.Functions.ILike(APIContext.Unaccent(x.CPF), $"%{filtro}%") &&
                 x.Status == StatusEntityEnum.Ativo &&
                 x.EmpresaId == _userContext.Empresa
-            // x => x.EnderecoPartida, x => x.EnderecoDestino, x => x.EnderecoRetorno, x => x.AlunoRotas
         );
+
+        if (alunos is null || !alunos.Any())
+            return new List<AlunoViewModel>();
 
         var enderecos = await ObterEnderecosAsync(alunos);
 

@@ -49,6 +49,7 @@ public class RouterAPI : IRouterAPI
     {
         _logger.LogInformation($"Enviando requisição para obter rotas por aluno - Dados: {alunoId}");
 
+        _httpClient.DefaultRequestHeaders.Remove("Authorization");
         _httpClient.DefaultRequestHeaders.Add("Authorization", _context.Token);
 
         var response = await _httpClient.GetAsync($"v1/AlunoRota?rotaId={rotaId}&alunoId={alunoId}");

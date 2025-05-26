@@ -54,7 +54,7 @@ internal class Program
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/pessoas/swagger/v1/swagger.json", "Pessoas.API v1");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Pessoas.API v1");
                 c.RoutePrefix = "swagger";
             });
         }
