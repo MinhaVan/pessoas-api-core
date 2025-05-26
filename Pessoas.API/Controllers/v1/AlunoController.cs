@@ -29,7 +29,7 @@ public class AlunoController : BaseController
     }
 
     [HttpGet("{alunosIds}")]
-    public async Task<IActionResult> ObterAlunosAsync([FromQuery] List<int> alunosIds)
+    public async Task<IActionResult> ObterAlunosAsync([FromRoute] List<int> alunosIds)
     {
         var alunos = await _alunoService.ObterAlunosAsync(alunosIds);
         return Success(alunos);
