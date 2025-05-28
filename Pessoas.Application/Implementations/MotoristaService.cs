@@ -16,12 +16,15 @@ public class MotoristaService : IMotoristaService
 {
     private readonly IMapper _mapper;
     private readonly IAuthApi _authApi;
+    private readonly IUserContext _userContext;
     private readonly IBaseRepository<Motorista> _motoristaRepository;
     public MotoristaService(
         IMapper mapper,
+        IUserContext userContext,
         IAuthApi authApi,
         IBaseRepository<Motorista> motoristaRepository)
     {
+        _userContext = userContext;
         _motoristaRepository = motoristaRepository;
         _authApi = authApi;
         _mapper = mapper;
@@ -50,33 +53,39 @@ public class MotoristaService : IMotoristaService
         await _motoristaRepository.RemoverAsync(motoristaId);
     }
 
-    public async Task<MotoristaViewModel> ObterAsync(int motoristaId)
+    public async Task<MotoristaViewModel> ObterAsync(int motoristaId, bool completarDadosDoUsuario)
     {
         var motorista = await _motoristaRepository.BuscarUmAsync(x => x.Id == motoristaId);
-        var usuarioResponse = await ObterUsuarioPorIdAsync(motorista.UsuarioId);
-
         var dto = _mapper.Map<MotoristaViewModel>(motorista);
-        dto.PrimeiroNome = usuarioResponse.PrimeiroNome;
-        dto.UltimoNome = usuarioResponse.UltimoNome;
+
+        if (completarDadosDoUsuario)
+        {
+            var usuarioResponse = await ObterUsuarioPorIdAsync(motorista.UsuarioId);
+            dto.PrimeiroNome = usuarioResponse.PrimeiroNome;
+            dto.UltimoNome = usuarioResponse.UltimoNome;
+        }
 
         return dto;
     }
 
-    public async Task<MotoristaViewModel> ObterPorUsuarioIdAsync(int usuarioId)
+    public async Task<MotoristaViewModel> ObterPorUsuarioIdAsync(int usuarioId, bool completarDadosDoUsuario)
     {
         var motorista = await _motoristaRepository.BuscarUmAsync(x => x.UsuarioId == usuarioId);
-        var usuarioResponse = await ObterUsuarioPorIdAsync(motorista.UsuarioId);
-
         var dto = _mapper.Map<MotoristaViewModel>(motorista);
-        dto.PrimeiroNome = usuarioResponse.PrimeiroNome;
-        dto.UltimoNome = usuarioResponse.UltimoNome;
+
+        if (completarDadosDoUsuario)
+        {
+            var usuarioResponse = await ObterUsuarioPorIdAsync(motorista.UsuarioId);
+            dto.PrimeiroNome = usuarioResponse.PrimeiroNome;
+            dto.UltimoNome = usuarioResponse.UltimoNome;
+        }
 
         return dto;
     }
 
     private async Task<UsuarioViewModel> ObterUsuarioPorIdAsync(int usuarioId)
     {
-        var usuarioResponse = await _authApi.ObterUsuarioPorIdAsync(usuarioId);
+        var usuarioResponse = await _authApi.ObterUsuarioPorIdAsync(_userContext.Token, usuarioId);
         if (usuarioResponse.Sucesso == false || usuarioResponse.Data == null)
             throw new Exception("Usuário para o motorista não encontrado!");
 

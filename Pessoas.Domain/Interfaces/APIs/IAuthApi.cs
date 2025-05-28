@@ -9,5 +9,5 @@ public interface IAuthApi
 {
     [Post("/v1/Usuario")] Task<BaseResponse<UsuarioViewModel>> RegistrarAsync(UsuarioNovoViewModel user);
     [Put("/v1/Usuario")] Task<BaseResponse<object>> AtualizarAsync(UsuarioAtualizarViewModel user);
-    [Get("/v1/Usuario/{usuarioId}")] Task<BaseResponse<UsuarioViewModel>> ObterUsuarioPorIdAsync(int usuarioId);
+    [Get("/v1/Usuario/{usuarioId}")] Task<BaseResponse<UsuarioViewModel>> ObterUsuarioPorIdAsync([Header("Authorization")] string authorization, int usuarioId);
 }

@@ -18,16 +18,16 @@ public class MotoristaController : BaseController
     }
 
     [HttpGet("{motoristaId}")]
-    public async Task<IActionResult> ObterAsync([FromRoute] int motoristaId)
+    public async Task<IActionResult> ObterAsync([FromRoute] int motoristaId, [FromQuery] bool completarDadosDoUsuario = false)
     {
-        var response = await _motoristaService.ObterAsync(motoristaId);
+        var response = await _motoristaService.ObterAsync(motoristaId, completarDadosDoUsuario);
         return Success(response);
     }
 
     [HttpGet("Usuario/{usuarioId}")]
-    public async Task<IActionResult> ObterPorUsuarioIdAsync([FromRoute] int usuarioId)
+    public async Task<IActionResult> ObterPorUsuarioIdAsync([FromRoute] int usuarioId, [FromQuery] bool completarDadosDoUsuario = false)
     {
-        var response = await _motoristaService.ObterPorUsuarioIdAsync(usuarioId);
+        var response = await _motoristaService.ObterPorUsuarioIdAsync(usuarioId, completarDadosDoUsuario);
         return Success(response);
     }
 
