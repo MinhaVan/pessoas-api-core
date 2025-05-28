@@ -20,7 +20,7 @@ public static class HttpExtensions
         });
 
         services.AddRefitClient<IAuthApi>()
-            .ConfigureHttpClient(c => c.BaseAddress = new Uri(secretManager.URL.AuthAPI));
+            .ConfigureHttpClient(c => c.BaseAddress = new Uri(secretManager.URL.GatewayAPI));
 
         Console.WriteLine("Configuração das APIs consumidas realizada com sucesso!");
 

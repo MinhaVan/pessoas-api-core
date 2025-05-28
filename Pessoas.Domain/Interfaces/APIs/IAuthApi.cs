@@ -7,7 +7,7 @@ namespace Pessoas.Core.Domain.Interfaces.APIs;
 
 public interface IAuthApi
 {
-    [Post("/v1/Usuario")] Task<BaseResponse<UsuarioViewModel>> RegistrarAsync(UsuarioNovoViewModel user);
-    [Put("/v1/Usuario")] Task<BaseResponse<object>> AtualizarAsync(UsuarioAtualizarViewModel user);
-    [Get("/v1/Usuario/{usuarioId}")] Task<BaseResponse<UsuarioViewModel>> ObterUsuarioPorIdAsync([Header("Authorization")] string authorization, int usuarioId);
+    [Post("/Auth/v1/Usuario")] Task<BaseResponse<UsuarioViewModel>> RegistrarAsync(UsuarioNovoViewModel user);
+    [Put("/Auth/v1/Usuario")] Task<BaseResponse<object>> AtualizarAsync(UsuarioAtualizarViewModel user);
+    [Get("/Auth/v1/Usuario/{userId}")] Task<BaseResponse<UsuarioViewModel>> ObterUsuarioPorIdAsync([Header("Authorization")] string authorization, int userId);
 }
