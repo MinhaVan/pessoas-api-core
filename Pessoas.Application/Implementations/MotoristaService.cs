@@ -8,6 +8,7 @@ using Pessoas.Core.Domain.Models;
 using Pessoas.Core.Domain.ViewModels.Motorista;
 using Pessoas.Core.Domain.Interfaces.APIs;
 using Pessoas.Core.Application.Exceptions;
+using System;
 
 namespace Pessoas.Core.Application.Implementations;
 
@@ -52,12 +53,33 @@ public class MotoristaService : IMotoristaService
     public async Task<MotoristaViewModel> ObterAsync(int motoristaId)
     {
         var motorista = await _motoristaRepository.BuscarUmAsync(x => x.Id == motoristaId);
-        return _mapper.Map<MotoristaViewModel>(motorista);
+        var usuarioResponse = await ObterUsuarioPorIdAsync(motorista.UsuarioId);
+
+        var dto = _mapper.Map<MotoristaViewModel>(motorista);
+        dto.PrimeiroNome = usuarioResponse.PrimeiroNome;
+        dto.UltimoNome = usuarioResponse.UltimoNome;
+
+        return dto;
     }
 
     public async Task<MotoristaViewModel> ObterPorUsuarioIdAsync(int usuarioId)
     {
         var motorista = await _motoristaRepository.BuscarUmAsync(x => x.UsuarioId == usuarioId);
-        return _mapper.Map<MotoristaViewModel>(motorista);
+        var usuarioResponse = await ObterUsuarioPorIdAsync(motorista.UsuarioId);
+
+        var dto = _mapper.Map<MotoristaViewModel>(motorista);
+        dto.PrimeiroNome = usuarioResponse.PrimeiroNome;
+        dto.UltimoNome = usuarioResponse.UltimoNome;
+
+        return dto;
+    }
+
+    private async Task<UsuarioViewModel> ObterUsuarioPorIdAsync(int usuarioId)
+    {
+        var usuarioResponse = await _authApi.ObterUsuarioPorIdAsync(usuarioId);
+        if (usuarioResponse.Sucesso == false || usuarioResponse.Data == null)
+            throw new Exception("Usuário para o motorista não encontrado!");
+
+        return usuarioResponse.Data;
     }
 }
