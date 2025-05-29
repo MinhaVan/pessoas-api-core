@@ -58,6 +58,9 @@ public class MotoristaService : IMotoristaService
         var motorista = await _motoristaRepository.BuscarUmAsync(x => x.Id == motoristaId);
         var dto = _mapper.Map<MotoristaViewModel>(motorista);
 
+        if (dto is null)
+            return default;
+
         if (completarDadosDoUsuario)
         {
             var usuarioResponse = await ObterUsuarioPorIdAsync(motorista.UsuarioId);
