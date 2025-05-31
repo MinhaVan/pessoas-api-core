@@ -69,17 +69,21 @@ public class AlunoService : IAlunoService
         await _alunoRepository.AtualizarAsync(aluno);
     }
 
-    public async Task<IList<AlunoViewModel>> ObterTodos(int responsavelId)
+    public async Task<IList<AlunoViewModel>> ObterTodos(int responsavelId, bool obterEnderecos = true)
     {
         var alunos = await _alunoRepository.BuscarAsync(x => x.ResponsavelId == responsavelId && x.Status == StatusEntityEnum.Ativo);
-        var enderecos = await ObterEnderecosAsync(alunos);
         var response = _mapper.Map<List<AlunoViewModel>>(alunos);
-        await Parallel.ForEachAsync(response, async (aluno, _) =>
+
+        if (obterEnderecos)
         {
-            aluno.EnderecoPartida = enderecos.FirstOrDefault(x => x.Id == aluno.EnderecoPartidaId);
-            aluno.EnderecoDestino = enderecos.FirstOrDefault(x => x.Id == aluno.EnderecoDestinoId);
-            aluno.EnderecoRetorno = enderecos.FirstOrDefault(x => x.Id == aluno.EnderecoRetornoId);
-        });
+            var enderecos = await ObterEnderecosAsync(alunos);
+            await Parallel.ForEachAsync(response, async (aluno, _) =>
+            {
+                aluno.EnderecoPartida = enderecos.FirstOrDefault(x => x.Id == aluno.EnderecoPartidaId);
+                aluno.EnderecoDestino = enderecos.FirstOrDefault(x => x.Id == aluno.EnderecoDestinoId);
+                aluno.EnderecoRetorno = enderecos.FirstOrDefault(x => x.Id == aluno.EnderecoRetornoId);
+            });
+        }
 
         return response;
     }

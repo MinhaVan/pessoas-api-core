@@ -22,10 +22,11 @@ public class AlunoController : BaseController
     }
 
     [HttpGet]
-    public async Task<IActionResult> ObterAlunos()
+    public async Task<IActionResult> ObterAlunos([FromQuery] bool obterEnderecos = true)
     {
         var responsavelId = _userContext.UserId;
-        return Success(await _alunoService.ObterTodos(responsavelId));
+        var alunos = await _alunoService.ObterTodos(responsavelId, obterEnderecos);
+        return Success(alunos);
     }
 
     [HttpGet("Lista")]
