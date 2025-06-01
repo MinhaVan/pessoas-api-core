@@ -69,7 +69,7 @@ public class AlunoService : IAlunoService
         await _alunoRepository.AtualizarAsync(aluno);
     }
 
-    public async Task<IList<AlunoViewModel>> ObterTodos(int responsavelId, bool obterEnderecos = true)
+    public async Task<IList<AlunoViewModel>> ObterTodosPorResponsavelAsync(int responsavelId, bool obterEnderecos = true)
     {
         var alunos = await _alunoRepository.BuscarAsync(x => x.ResponsavelId == responsavelId && x.Status == StatusEntityEnum.Ativo);
         var response = _mapper.Map<List<AlunoViewModel>>(alunos);
@@ -168,5 +168,11 @@ public class AlunoService : IAlunoService
         });
 
         return response;
+    }
+
+    public async Task<List<AlunoViewModel>> ObterTodosAsync()
+    {
+        var alunos = await _alunoRepository.BuscarAsync(x => x.Status == StatusEntityEnum.Ativo && x.EmpresaId == _userContext.Empresa);
+        return _mapper.Map<List<AlunoViewModel>>(alunos);
     }
 }

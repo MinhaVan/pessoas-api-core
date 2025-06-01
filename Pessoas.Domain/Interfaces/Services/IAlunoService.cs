@@ -9,8 +9,9 @@ public interface IAlunoService
     Task AdicionarAsync(int responsavelId, AlunoAdicionarViewModel Alunos);
     Task AtualizarAsync(int responsavelId, AlunoViewModel Alunos);
     Task DeletarAsync(int responsavelId, int AlunoId);
-    Task<IList<AlunoViewModel>> ObterTodos(int responsavelId, bool obterEnderecos = true);
+    Task<IList<AlunoViewModel>> ObterTodosPorResponsavelAsync(int responsavelId, bool obterEnderecos = true);
     Task<IList<AlunoViewModel>> ObterAluno(int responsavelId, int AlunoId);
     Task<List<AlunoViewModel>> ObterAlunosPorFiltro(int rotaId, string filtro);
     Task<IList<AlunoViewModel>> ObterAlunosAsync(List<int> alunosIds);
+    Task<List<AlunoViewModel>> ObterTodosAsync();
 }

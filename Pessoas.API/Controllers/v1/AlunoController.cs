@@ -21,11 +21,18 @@ public class AlunoController : BaseController
         _alunoService = alunoService;
     }
 
+    [HttpGet("All")]
+    public async Task<IActionResult> ObterTodosAlunos()
+    {
+        var alunos = await _alunoService.ObterTodosAsync();
+        return Success(alunos);
+    }
+
     [HttpGet]
-    public async Task<IActionResult> ObterAlunos([FromQuery] bool obterEnderecos = true)
+    public async Task<IActionResult> ObterTodosPorResponsavelAsync([FromQuery] bool obterEnderecos = true)
     {
         var responsavelId = _userContext.UserId;
-        var alunos = await _alunoService.ObterTodos(responsavelId, obterEnderecos);
+        var alunos = await _alunoService.ObterTodosPorResponsavelAsync(responsavelId, obterEnderecos);
         return Success(alunos);
     }
 
