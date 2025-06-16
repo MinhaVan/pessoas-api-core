@@ -5,31 +5,18 @@ using Pessoas.Core.Domain.Interfaces.Repository;
 using Pessoas.Core.Domain.Interfaces.Services;
 using Pessoas.Core.Domain.ViewModels;
 using Pessoas.Core.Domain.Models;
-using Pessoas.Core.Domain.ViewModels.Motorista;
 using Pessoas.Core.Domain.Interfaces.APIs;
-using Pessoas.Core.Application.Exceptions;
 using System;
+using System.Collections.Generic;
 
 namespace Pessoas.Core.Application.Implementations;
 
-public class MotoristaService : IMotoristaService
+public class MotoristaService(
+    IMapper _mapper,
+    IUserContext _userContext,
+    IAuthApi _authApi,
+    IBaseRepository<Motorista> _motoristaRepository) : IMotoristaService
 {
-    private readonly IMapper _mapper;
-    private readonly IAuthApi _authApi;
-    private readonly IUserContext _userContext;
-    private readonly IBaseRepository<Motorista> _motoristaRepository;
-    public MotoristaService(
-        IMapper mapper,
-        IUserContext userContext,
-        IAuthApi authApi,
-        IBaseRepository<Motorista> motoristaRepository)
-    {
-        _userContext = userContext;
-        _motoristaRepository = motoristaRepository;
-        _authApi = authApi;
-        _mapper = mapper;
-    }
-
     public async Task AdicionarAsync(MotoristaNovoViewModel usuarioNovoViewModel)
     {
         var model = _mapper.Map<Motorista>(usuarioNovoViewModel);
@@ -51,6 +38,36 @@ public class MotoristaService : IMotoristaService
     public async Task DeletarAsync(int motoristaId)
     {
         await _motoristaRepository.RemoverAsync(motoristaId);
+    }
+
+    public async Task<List<MotoristaViewModel>> ObterTodosAsync(bool completarDadosDoUsuario)
+    {
+        var motoristas = await _motoristaRepository.BuscarAsync(x => x.Status == StatusEntityEnum.Ativo);
+        var dto = _mapper.Map<List<MotoristaViewModel>>(motoristas);
+
+        if (dto is null)
+            return default;
+
+        if (completarDadosDoUsuario)
+        {
+            dto.ForEach(async x =>
+            {
+                var usuarioResponse = await ObterUsuarioPorIdAsync(x.Id);
+                x.PrimeiroNome = usuarioResponse.PrimeiroNome;
+                x.UltimoNome = usuarioResponse.UltimoNome;
+                x.CPF = usuarioResponse.CPF;
+                x.Contato = usuarioResponse.Contato;
+                x.Email = usuarioResponse.Email;
+                x.Perfil = usuarioResponse.Perfil;
+                x.PlanoId = usuarioResponse.PlanoId;
+                x.UsuarioValidado = usuarioResponse.UsuarioValidado;
+                x.EnderecoPrincipalId = usuarioResponse.EnderecoPrincipalId;
+                x.Senha = string.Empty; // Senha não deve ser exposta
+                x.EmpresaId = usuarioResponse.EmpresaId;
+            });
+        }
+
+        return dto;
     }
 
     public async Task<MotoristaViewModel> ObterAsync(int motoristaId, bool completarDadosDoUsuario)

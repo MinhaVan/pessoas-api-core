@@ -9,12 +9,13 @@ namespace Pessoas.Core.API.Controllers.v1;
 [ApiController]
 [Route("v1/[controller]")]
 [Authorize("Bearer")]
-public class MotoristaController : BaseController
+public class MotoristaController(IMotoristaService _motoristaService) : BaseController
 {
-    private readonly IMotoristaService _motoristaService;
-    public MotoristaController(IMotoristaService motoristaService)
+    [HttpGet]
+    public async Task<IActionResult> ObterAsync([FromQuery] bool completarDadosDoUsuario = false)
     {
-        _motoristaService = motoristaService;
+        var response = await _motoristaService.ObterTodosAsync(completarDadosDoUsuario);
+        return Success(response);
     }
 
     [HttpGet("{motoristaId}")]
