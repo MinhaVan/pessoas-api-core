@@ -26,7 +26,7 @@ public class MotoristaService(
 
     public async Task AtualizarAsync(MotoristaAtualizarViewModel usuarioAtualizarViewModel)
     {
-        await _authApi.AtualizarAsync(usuarioAtualizarViewModel);
+        await _authApi.AtualizarAsync(_userContext.Token, usuarioAtualizarViewModel);
 
         var motorista = await _motoristaRepository.BuscarUmAsync(x => x.UsuarioId == usuarioAtualizarViewModel.Id);
         motorista.CNH = usuarioAtualizarViewModel.CNH;
