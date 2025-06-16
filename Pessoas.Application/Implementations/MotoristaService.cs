@@ -9,6 +9,7 @@ using Pessoas.Core.Domain.Interfaces.APIs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Pessoas.Core.Domain.Utils;
 
 namespace Pessoas.Core.Application.Implementations;
 
@@ -26,9 +27,11 @@ public class MotoristaService(
 
     public async Task AtualizarAsync(MotoristaAtualizarViewModel usuarioAtualizarViewModel)
     {
+        var motorista = await _motoristaRepository.BuscarUmAsync(x => x.Id == usuarioAtualizarViewModel.Id);
+
+        usuarioAtualizarViewModel.Id = motorista.UsuarioId;
         await _authApi.AtualizarAsync(_userContext.Token, usuarioAtualizarViewModel);
 
-        var motorista = await _motoristaRepository.BuscarUmAsync(x => x.UsuarioId == usuarioAtualizarViewModel.Id);
         motorista.CNH = usuarioAtualizarViewModel.CNH;
         motorista.Vencimento = usuarioAtualizarViewModel.Vencimento;
         motorista.TipoCNH = usuarioAtualizarViewModel.TipoCNH;
