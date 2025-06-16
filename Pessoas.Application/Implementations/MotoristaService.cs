@@ -8,6 +8,7 @@ using Pessoas.Core.Domain.Models;
 using Pessoas.Core.Domain.Interfaces.APIs;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Pessoas.Core.Application.Implementations;
 
@@ -50,9 +51,9 @@ public class MotoristaService(
 
         if (completarDadosDoUsuario)
         {
-            dto.ForEach(async x =>
+            var tasks = dto.Select(async x =>
             {
-                var usuarioResponse = await ObterUsuarioPorIdAsync(x.Id);
+                var usuarioResponse = await ObterUsuarioPorIdAsync(x.UsuarioId.Value, obterDadosMotorista: false);
                 x.PrimeiroNome = usuarioResponse.PrimeiroNome;
                 x.UltimoNome = usuarioResponse.UltimoNome;
                 x.CPF = usuarioResponse.CPF;
@@ -62,9 +63,11 @@ public class MotoristaService(
                 x.PlanoId = usuarioResponse.PlanoId;
                 x.UsuarioValidado = usuarioResponse.UsuarioValidado;
                 x.EnderecoPrincipalId = usuarioResponse.EnderecoPrincipalId;
-                x.Senha = string.Empty; // Senha não deve ser exposta
+                x.Senha = string.Empty;
                 x.EmpresaId = usuarioResponse.EmpresaId;
             });
+
+            await Task.WhenAll(tasks);
         }
 
         return dto;
@@ -103,9 +106,9 @@ public class MotoristaService(
         return dto;
     }
 
-    private async Task<UsuarioViewModel> ObterUsuarioPorIdAsync(int usuarioId)
+    private async Task<UsuarioViewModel> ObterUsuarioPorIdAsync(int usuarioId, bool obterDadosMotorista = true)
     {
-        var usuarioResponse = await _authApi.ObterUsuarioPorIdAsync(_userContext.Token, usuarioId);
+        var usuarioResponse = await _authApi.ObterUsuarioPorIdAsync(_userContext.Token, usuarioId, obterDadosMotorista);
         if (usuarioResponse.Sucesso == false || usuarioResponse.Data == null)
             throw new Exception("Usuário para o motorista não encontrado!");
 
