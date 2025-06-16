@@ -3,6 +3,10 @@ using Pessoas.Core.Domain.Interfaces.Services;
 using Pessoas.Core.Domain.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+using System;
+using Pessoas.Core.Domain.Enums;
+using Pessoas.Domain.ViewModels.Motorista;
 
 namespace Pessoas.Core.API.Controllers.v1;
 
@@ -11,6 +15,21 @@ namespace Pessoas.Core.API.Controllers.v1;
 [Authorize("Bearer")]
 public class MotoristaController(IMotoristaService _motoristaService) : BaseController
 {
+    [HttpGet("CNH")]
+    public IActionResult ObterTipoCNHAsync()
+    {
+        var tipoCNH = new List<TipoCNHViewModel>();
+        foreach (var value in Enum.GetValues(typeof(TipoCNHEnum)))
+        {
+            tipoCNH.Add(new TipoCNHViewModel
+            {
+                Id = (int)value,
+                Nome = value.ToString()
+            });
+        }
+        return Success(tipoCNH);
+    }
+
     [HttpGet]
     public async Task<IActionResult> ObterAsync([FromQuery] bool completarDadosDoUsuario = false)
     {
