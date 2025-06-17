@@ -9,7 +9,8 @@ using Pessoas.Core.Domain.Interfaces.APIs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Pessoas.Core.Domain.Utils;
+using Pessoas.Core.Domain.ViewModels.Motorista;
+using Pessoas.Domain.ViewModels.Motorista;
 
 namespace Pessoas.Core.Application.Implementations;
 
@@ -19,9 +20,22 @@ public class MotoristaService(
     IAuthApi _authApi,
     IBaseRepository<Motorista> _motoristaRepository) : IMotoristaService
 {
-    public async Task AdicionarAsync(MotoristaNovoViewModel usuarioNovoViewModel)
+    public async Task AdicionarAsync(UsuarioNovoViewModel usuarioNovoViewModel)
     {
         var model = _mapper.Map<Motorista>(usuarioNovoViewModel);
+        var usuarioMotorista = new UsuarioMotoristaNovoViewModel
+        {
+            Contato = usuarioNovoViewModel.Contato,
+            Email = usuarioNovoViewModel.Email,
+            PrimeiroNome = usuarioNovoViewModel.PrimeiroNome,
+            UltimoNome = usuarioNovoViewModel.UltimoNome,
+            CPF = usuarioNovoViewModel.CPF,
+            Senha = usuarioNovoViewModel.Senha,
+            EmpresaId = usuarioNovoViewModel.EmpresaId,
+        };
+        var response = await _authApi.RegistrarAsync(usuarioMotorista);
+
+        model.UsuarioId = response.Data.Id;
         await _motoristaRepository.AdicionarAsync(model);
     }
 

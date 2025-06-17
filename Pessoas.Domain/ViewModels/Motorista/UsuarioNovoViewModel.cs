@@ -1,6 +1,6 @@
 using Pessoas.Core.Domain.Enums;
 
-namespace Pessoas.Core.Domain.ViewModels.Motorista;
+namespace Pessoas.Domain.ViewModels.Motorista;
 
 public class UsuarioNovoViewModel
 {

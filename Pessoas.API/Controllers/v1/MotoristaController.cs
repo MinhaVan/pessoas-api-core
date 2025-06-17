@@ -53,7 +53,7 @@ public class MotoristaController(IMotoristaService _motoristaService) : BaseCont
 
     [HttpPost]
     [AllowAnonymous]
-    public async Task<IActionResult> AdicionarAsync([FromBody] MotoristaNovoViewModel request)
+    public async Task<IActionResult> AdicionarAsync([FromBody] UsuarioNovoViewModel request)
     {
         await _motoristaService.AdicionarAsync(request);
         return Success();
