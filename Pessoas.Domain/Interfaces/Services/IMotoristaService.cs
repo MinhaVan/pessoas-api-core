@@ -10,6 +10,6 @@ public interface IMotoristaService
     Task AtualizarAsync(MotoristaAtualizarViewModel request);
     Task DeletarAsync(int motoristaId);
     Task<MotoristaViewModel> ObterAsync(int motoristaId, bool completarDadosDoUsuario);
-    Task<List<MotoristaViewModel>> ObterTodosAsync(bool completarDadosDoUsuario);
+    Task<List<MotoristaViewModel>> ObterTodosAsync(bool completarDadosDoUsuario, bool adicionarDeletados = false);
     Task<MotoristaViewModel> ObterPorUsuarioIdAsync(int usuarioId, bool completarDadosDoUsuario);
 }

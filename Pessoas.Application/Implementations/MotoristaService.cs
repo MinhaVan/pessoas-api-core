@@ -44,9 +44,9 @@ public class MotoristaService(
         await _motoristaRepository.RemoverAsync(motoristaId);
     }
 
-    public async Task<List<MotoristaViewModel>> ObterTodosAsync(bool completarDadosDoUsuario)
+    public async Task<List<MotoristaViewModel>> ObterTodosAsync(bool completarDadosDoUsuario, bool adicionarDeletados = false)
     {
-        var motoristas = await _motoristaRepository.BuscarAsync(x => x.Status == StatusEntityEnum.Ativo);
+        var motoristas = await _motoristaRepository.BuscarAsync(x => x.Status == StatusEntityEnum.Ativo || (adicionarDeletados && x.Status != StatusEntityEnum.Deletado));
         var dto = _mapper.Map<List<MotoristaViewModel>>(motoristas);
 
         if (dto is null)

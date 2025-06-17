@@ -31,9 +31,9 @@ public class MotoristaController(IMotoristaService _motoristaService) : BaseCont
     }
 
     [HttpGet]
-    public async Task<IActionResult> ObterAsync([FromQuery] bool completarDadosDoUsuario = false)
+    public async Task<IActionResult> ObterAsync([FromQuery] bool completarDadosDoUsuario = false, [FromQuery] bool adicionarDeletados = false)
     {
-        var response = await _motoristaService.ObterTodosAsync(completarDadosDoUsuario);
+        var response = await _motoristaService.ObterTodosAsync(completarDadosDoUsuario, adicionarDeletados);
         return Success(response);
     }
 
