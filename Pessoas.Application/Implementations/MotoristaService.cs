@@ -40,6 +40,7 @@ public class MotoristaService(
 
         model.UsuarioId = response.Data.Id;
         await _motoristaRepository.AdicionarAsync(model);
+        await LimparCache();
     }
 
     public async Task AtualizarAsync(MotoristaAtualizarViewModel usuarioAtualizarViewModel)
@@ -55,11 +56,13 @@ public class MotoristaService(
         motorista.TipoCNH = usuarioAtualizarViewModel.TipoCNH;
         motorista.Foto = usuarioAtualizarViewModel.Foto;
         await _motoristaRepository.AtualizarAsync(motorista);
+        await LimparCache();
     }
 
     public async Task DeletarAsync(int motoristaId)
     {
         await _motoristaRepository.RemoverAsync(motoristaId);
+        await LimparCache();
     }
 
     public async Task<List<MotoristaViewModel>> ObterTodosAsync(bool completarDadosDoUsuario, bool adicionarDeletados = false)
@@ -148,5 +151,18 @@ public class MotoristaService(
             throw new Exception("Usuário para o motorista não encontrado!");
 
         return usuarioResponse.Data;
+    }
+
+    private async Task LimparCache()
+    {
+        var tasks = new[]
+        {
+            _redisRepository.DeleteAsync(string.Format(KeyRedis.Motoristas.TodosMotoristas, false, false)),
+            _redisRepository.DeleteAsync(string.Format(KeyRedis.Motoristas.TodosMotoristas, false, true)),
+            _redisRepository.DeleteAsync(string.Format(KeyRedis.Motoristas.TodosMotoristas, true, false)),
+            _redisRepository.DeleteAsync(string.Format(KeyRedis.Motoristas.TodosMotoristas, true, true))
+        };
+
+        await Task.WhenAll(tasks);
     }
 }
