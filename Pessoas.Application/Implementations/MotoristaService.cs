@@ -46,6 +46,7 @@ public class MotoristaService(
         usuarioAtualizarViewModel.Id = motorista.UsuarioId;
         await _authApi.AtualizarAsync(_userContext.Token, usuarioAtualizarViewModel);
 
+        motorista.Status = usuarioAtualizarViewModel.Status;
         motorista.CNH = usuarioAtualizarViewModel.CNH;
         motorista.Vencimento = usuarioAtualizarViewModel.Vencimento;
         motorista.TipoCNH = usuarioAtualizarViewModel.TipoCNH;

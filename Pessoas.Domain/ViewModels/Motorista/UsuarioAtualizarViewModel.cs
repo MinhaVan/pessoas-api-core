@@ -19,5 +19,6 @@ public class UsuarioAtualizarViewModel
     public bool UsuarioValidado { get; set; }
     public string Senha { get; set; }
     public string RefreshToken { get; set; }
+    public StatusEntityEnum Status { get; set; }
     public DateTime RefreshTokenExpiryTime { get; set; }
 }
