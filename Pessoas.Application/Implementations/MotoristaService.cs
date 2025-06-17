@@ -11,11 +11,14 @@ using System.Collections.Generic;
 using System.Linq;
 using Pessoas.Core.Domain.ViewModels.Motorista;
 using Pessoas.Domain.ViewModels.Motorista;
+using Pessoas.Domain.Interfaces.Repositories;
+using Pessoas.Domain.Utils;
 
 namespace Pessoas.Core.Application.Implementations;
 
 public class MotoristaService(
     IMapper _mapper,
+    IRedisRepository _redisRepository,
     IUserContext _userContext,
     IAuthApi _authApi,
     IBaseRepository<Motorista> _motoristaRepository) : IMotoristaService
@@ -61,7 +64,21 @@ public class MotoristaService(
 
     public async Task<List<MotoristaViewModel>> ObterTodosAsync(bool completarDadosDoUsuario, bool adicionarDeletados = false)
     {
-        var motoristas = await _motoristaRepository.BuscarAsync(x => x.Status == StatusEntityEnum.Ativo || (adicionarDeletados && x.Status == StatusEntityEnum.Deletado));
+        var chave = string.Format(KeyRedis.Motoristas.TodosMotoristas, adicionarDeletados, completarDadosDoUsuario);
+        var motoristas = await _redisRepository.GetAsync<IEnumerable<Motorista>>(chave);
+
+        if (motoristas is null || !motoristas.Any())
+        {
+            motoristas = await _motoristaRepository.BuscarAsync(x => x.Status == StatusEntityEnum.Ativo || (adicionarDeletados && x.Status == StatusEntityEnum.Deletado));
+            if (motoristas is not null && motoristas.Any())
+            {
+                await _redisRepository.SetAsync(chave, motoristas, durationInMinutes: 60);
+            }
+        }
+
+        if (motoristas is null || !motoristas.Any())
+            return default;
+
         var dto = _mapper.Map<List<MotoristaViewModel>>(motoristas);
 
         if (dto is null)

@@ -28,18 +28,7 @@ public static class RepositoryExtensions
         services.AddScoped<IBaseRepository<RotaHistorico>, BaseRepository<RotaHistorico>>();
         services.AddScoped<IBaseRepository<Aluno>, BaseRepository<Aluno>>();
 
-        services.AddQueue(secretManager);
-
         Console.WriteLine("Configuração de repository realizada com sucesso!");
-
-        return services;
-    }
-
-    public static IServiceCollection AddQueue(this IServiceCollection services, SecretManager secretManager)
-    {
-        var connection = secretManager.ConnectionStrings.RabbitConnection.Split(':');
-
-
 
         return services;
     }

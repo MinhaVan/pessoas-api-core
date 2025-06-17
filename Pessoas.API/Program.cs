@@ -37,6 +37,7 @@ internal class Program
                         .AddCustomResponseCompression()
                         .AddCustomCors()
                         .AddCustomServices(secretManager)
+                        .AddCache(secretManager)
                         .AddCustomRepository(secretManager)
                         .AddCustomMapper()
                         .AddControllersWithFilters()

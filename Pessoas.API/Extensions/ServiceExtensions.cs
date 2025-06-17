@@ -15,19 +15,11 @@ public static class ServiceExtensions
     public static IServiceCollection AddCustomServices(this IServiceCollection services, SecretManager secretManager)
     {
         services.AddHttpContextAccessor();
-        services.AddCache(secretManager);
 
         services.AddScoped<IAlunoService, AlunoService>();
         services.AddScoped<IMotoristaService, MotoristaService>();
 
         Console.WriteLine("Configuração das services realizada com sucesso!");
-
-        return services;
-    }
-
-    public static IServiceCollection AddCache(this IServiceCollection services, SecretManager secretManager)
-    {
-        Console.WriteLine("Configuração do Redis realizada com sucesso!");
 
         return services;
     }

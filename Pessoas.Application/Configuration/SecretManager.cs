@@ -10,7 +10,21 @@ public class SecretManager
     public TokenConfigurations TokenConfigurations { get; set; }
     public Asaas Asaas { get; set; }
     public URL URL { get; set; }
+    public Infra Infra { get; set; }
     public string AllowedHosts { get; set; }
+}
+public class Infra
+{
+    public string Redis { get; set; }
+    public RabbitMqSettings RabbitMQ { get; set; }
+}
+
+public class RabbitMqSettings
+{
+    public string Host { get; set; }
+    public string Port { get; set; }
+    public string UserName { get; set; }
+    public string Password { get; set; }
 }
 
 public class IpRateLimiting
