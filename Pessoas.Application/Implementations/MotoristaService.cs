@@ -88,7 +88,7 @@ public class MotoristaService(
             await Task.WhenAll(tasks);
         }
 
-        return dto;
+        return dto.OrderBy(x => x.Status).ToList();
     }
 
     public async Task<MotoristaViewModel> ObterAsync(int motoristaId, bool completarDadosDoUsuario)
