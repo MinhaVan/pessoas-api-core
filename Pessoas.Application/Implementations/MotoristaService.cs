@@ -33,8 +33,7 @@ public class MotoristaService(
             PrimeiroNome = usuarioNovoViewModel.PrimeiroNome,
             UltimoNome = usuarioNovoViewModel.UltimoNome,
             CPF = usuarioNovoViewModel.CPF,
-            Senha = usuarioNovoViewModel.Senha,
-            EmpresaId = usuarioNovoViewModel.EmpresaId,
+            Senha = usuarioNovoViewModel.Senha
         };
         var response = await _authApi.RegistrarAsync(usuarioMotorista);
 
@@ -102,7 +101,6 @@ public class MotoristaService(
                 x.UsuarioValidado = usuarioResponse.UsuarioValidado;
                 x.EnderecoPrincipalId = usuarioResponse.EnderecoPrincipalId;
                 x.Senha = string.Empty;
-                x.EmpresaId = usuarioResponse.EmpresaId;
             });
 
             await Task.WhenAll(tasks);

@@ -4,5 +4,4 @@ public interface IUserContext
 {
     string Token { get; }
     int UserId { get; }
-    int Empresa { get; }
 }

@@ -18,5 +18,4 @@ public class UsuarioDetalheViewModel
     public string Senha { get; set; }
     public string RefreshToken { get; set; }
     public DateTime RefreshTokenExpiryTime { get; set; }
-    public int EmpresaId { get; set; }
 }

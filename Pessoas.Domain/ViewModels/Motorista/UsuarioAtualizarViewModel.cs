@@ -7,7 +7,6 @@ namespace Pessoas.Core.Domain.ViewModels.Motorista;
 public class UsuarioAtualizarViewModel
 {
     public int Id { get; set; }
-    public int EmpresaId { get; set; }
     public string Contato { get; set; }
     public string CPF { get; set; }
     public string Email { get; set; }

@@ -36,7 +36,6 @@ public class AlunoService : IAlunoService
         var aluno = _mapper.Map<Domain.Models.Aluno>(AlunoVm);
         aluno.ResponsavelId = responsavelId;
         aluno.Status = StatusEntityEnum.Ativo;
-        aluno.EmpresaId = _userContext.Empresa;
 
         await _alunoRepository.AdicionarAsync(aluno);
     }
@@ -100,8 +99,7 @@ public class AlunoService : IAlunoService
                 EF.Functions.ILike(APIContext.Unaccent(x.Contato), $"%{filtro}%") ||
                 EF.Functions.ILike(APIContext.Unaccent(x.Email), $"%{filtro}%") ||
                 EF.Functions.ILike(APIContext.Unaccent(x.CPF), $"%{filtro}%") &&
-                x.Status == StatusEntityEnum.Ativo &&
-                x.EmpresaId == _userContext.Empresa
+                x.Status == StatusEntityEnum.Ativo
         );
 
         if (alunos is null || !alunos.Any())
@@ -172,7 +170,7 @@ public class AlunoService : IAlunoService
 
     public async Task<List<AlunoViewModel>> ObterTodosAsync()
     {
-        var alunos = await _alunoRepository.BuscarAsync(x => x.Status == StatusEntityEnum.Ativo && x.EmpresaId == _userContext.Empresa);
+        var alunos = await _alunoRepository.BuscarAsync(x => x.Status == StatusEntityEnum.Ativo);
         return _mapper.Map<List<AlunoViewModel>>(alunos);
     }
 }

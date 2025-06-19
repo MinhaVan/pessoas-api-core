@@ -1,9 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Pessoas.Core.Domain.Models;
-
 namespace Pessoas.Core.Domain.ViewModels.Aluno;
 
 public class AlunoDetalheViewModel
@@ -14,7 +8,6 @@ public class AlunoDetalheViewModel
     public string Contato { get; set; }
     public string Email { get; set; }
     public int ResponsavelId { get; set; }
-    public int EmpresaId { get; set; }
     public int EnderecoPartidaId { get; set; }
     public int EnderecoRetornoId { get; set; }
     public int EnderecoDestinoId { get; set; }
