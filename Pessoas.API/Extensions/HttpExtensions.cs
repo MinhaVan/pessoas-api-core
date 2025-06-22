@@ -10,9 +10,6 @@ public static class HttpExtensions
 {
     public static IServiceCollection AddCustomHttp(this IServiceCollection services, SecretManager secretManager)
     {
-        var url = secretManager.Asaas.Url;
-        var asaasToken = secretManager.Asaas.AcessToken;
-
         services.AddHttpClient("api-router", client =>
         {
             client.BaseAddress = new Uri(secretManager.URL.RouterAPI);

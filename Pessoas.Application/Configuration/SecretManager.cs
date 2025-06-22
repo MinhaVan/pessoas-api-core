@@ -8,7 +8,6 @@ public class SecretManager
     public AuthenticatedRateLimit AuthenticatedRateLimit { get; set; }
     public ConnectionStrings ConnectionStrings { get; set; }
     public TokenConfigurations TokenConfigurations { get; set; }
-    public Asaas Asaas { get; set; }
     public URL URL { get; set; }
     public Infra Infra { get; set; }
     public string AllowedHosts { get; set; }
@@ -62,13 +61,6 @@ public class TokenConfigurations
     public string Issuer { get; set; }
     public string Secret { get; set; }
     public int DaysToExpiry { get; set; }
-}
-
-public class Asaas
-{
-    public string Url { get; set; }
-    public string AcessToken { get; set; }
-    public string TokenWebHookAsaas { get; set; }
 }
 
 public class URL

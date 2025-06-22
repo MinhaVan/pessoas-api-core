@@ -4,9 +4,11 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Pessoas.Core.Application.Configuration;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Pessoas.Core.API.Extensions;
 
+[ExcludeFromCodeCoverage]
 public static class AuthenticationExtensions
 {
     public static IServiceCollection AddCustomAuthentication(this IServiceCollection services, SecretManager secretManager)
