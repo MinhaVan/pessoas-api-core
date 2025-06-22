@@ -146,7 +146,7 @@ public class MotoristaService(
 
     private async Task<UsuarioViewModel> ObterUsuarioPorIdAsync(int usuarioId, bool obterDadosMotorista = true)
     {
-        var usuarioResponse = await _authApi.ObterUsuarioPorIdAsync(_userContext.Token, usuarioId, obterDadosMotorista);
+        var usuarioResponse = await _authApi.ObterUsuarioPorIdAsync(_userContext.Token, usuarioId, obterDadosMotorista, obterDadosEndereco: false);
         if (usuarioResponse.Sucesso == false || usuarioResponse.Data == null)
             throw new Exception("Usuário para o motorista não encontrado!");
 
